@@ -2,6 +2,7 @@ window.onload = async function() {
     const params = new URLSearchParams(window.location.search);
     const productId = params.get('id');
     const itemsContainer = document.getElementById('items');
+    
 
     try {
         if (productId === '') {
