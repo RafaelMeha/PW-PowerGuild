@@ -1,0 +1,24 @@
+<a onclick="navigateTo('home')" id="logo"><h1><span id="power">Power</span>Guild</h1></a>
+<input type="search" id="search-game" placeholder="Search" onchange="searchGame()" autocomplete="off">
+<nav>
+    <div class="menu-settings">
+        <h3>Menu</h3>
+        <ul id="menu-dropdown">
+            <li><a onclick="navigateTo('home')">Home</a></li>
+            <li><a href="javascript:void(0)" onclick="navigateTo('shop')">Shop</a></li>
+            <li><a onclick="navigateTo('community')">Community</a></li>
+        </ul>
+    </div>
+    <div class="menu-settings" id="settings">
+        <h3>Settings</h3>
+        <ul id="settings-dropdown">
+            <li><a onclick="navigateTo('faq')">FAQ</a></li>
+            <li><a onclick="navigateTo('terms')">Terms of Use</a></li>
+            <li><a onclick="navigateTo('privacy')">Privacy</a></li>
+            <li><a onclick="navigateTo('contact')">Contact us</a></li>
+            <li><a onclick="navigateTo('ceo')">CEOS</a></li>
+        </ul>
+    </div>
+    <a onclick="navigateTo('shop')" id="shop"><h3>Shop</h3></a>
+    <a onclick="navigateTo('profile')" id="profile"><h3>Login</h3></a>
+</nav>
