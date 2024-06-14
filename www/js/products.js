@@ -13,7 +13,6 @@ class Product {
         this.fkSuppliersId = fkSuppliersId;
     }
 
-    // Method to generate HTML for the product
     generateHtml() {
         return `
             <li class="product-item">

@@ -4,7 +4,7 @@ const Product = require("../models/productsModel");
 
 router.get('/', async function(req, res) {
     try {
-        let result = await Platform.getAll();
+        let result = await Product.getAll();
         res.send(result);
     } catch (error) {
         console.log(error);
