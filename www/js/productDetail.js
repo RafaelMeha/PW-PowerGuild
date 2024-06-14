@@ -2,7 +2,7 @@ window.onload = async function() {
     const params = new URLSearchParams(window.location.search);
     const productId = params.get('id');
     const itemsContainer = document.getElementById('items');
-   
+
     try {
         if (productId === '') {
             await fetchAndDisplayProducts();
@@ -10,13 +10,16 @@ window.onload = async function() {
             const response = await fetch(`/api/products/${productId}`);
             if (!response.ok) {
                 if (response.status === 404) {
-                    itemsContainer.innerHTML = `No game with id: ${productId}`;
+                    clearElement(itemsContainer);
+                    const noGameMessage = document.createElement('div');
+                    noGameMessage.textContent = `No game with id: ${productId}`;
+                    itemsContainer.appendChild(noGameMessage);
                 } else {
                     throw new Error('Network response was not ok');
                 }
             } else {
                 const productData = await response.json();
-                itemsContainer.innerHTML = '';
+                clearElement(itemsContainer);
                 const product = new Product(
                     productData.id,
                     productData.name,
@@ -30,10 +33,17 @@ window.onload = async function() {
                     productData.fk_developers_id,
                     productData.fk_suppliers_id
                 );
-                itemsContainer.innerHTML += product.generateHtml()
+                const productElement = product.generateHtml();
+                itemsContainer.appendChild(productElement);
             }
         }
     } catch (error) {
         console.error('Error searching product:', error);
+    }
+};
+
+function clearElement(element) {
+    while (element.firstChild) {
+        element.removeChild(element.firstChild);
     }
 }

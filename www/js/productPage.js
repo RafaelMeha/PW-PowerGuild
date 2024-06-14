@@ -22,7 +22,8 @@ window.onload = async function() {
                 productData.fk_developers_id,
                 productData.fk_suppliers_id
             )
-            itemsContainer.innerHTML += product.generateHtml()
+            const productElement = product.generateHtml()
+            itemsContainer.appendChild(productElement);
         })
     } catch (error) {
         console.error('Error fetching products:', error)
@@ -102,4 +103,4 @@ async function searchGame() {
     } catch (error) {
         console.error('Error fetching products:', error)
     }
-}
+};
