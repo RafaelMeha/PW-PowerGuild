@@ -1,0 +1,42 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+main{
+    padding: 4.5rem 12rem 2rem 12rem;
+    color: var(--white);
+}
+
+#filters{
+    list-style: none;
+}
+
+#items{
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+}
+
+.product-item {
+    padding: 1rem;
+    border: 1px solid #ccc;
+}
+
+.price-discount{
+    display: flex;
+}
+
+.price-discount span{
+    margin: 0rem .5rem;
+}
+
+.discount{
+    color: red;
+}

@@ -6,7 +6,7 @@
         "host": "localhost",
         "user": "root",
         "database": "powerguild",
-        "password": "root",
+        "password": "reinaldo6131",
         "port":3306,
         "connectionLimit": 20
     }

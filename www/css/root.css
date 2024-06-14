@@ -1,0 +1,33 @@
+:root{
+    --primary: #1f1f1f;
+    --secondary: #f8bb21;
+    --third: #E4D9FF;
+    --nav-text: #CCCCCC;
+    --white: #fff;
+    --black: #000;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    background-color: var(--primary);
+    font-size: 16px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+::-webkit-scrollbar{
+    width: 10px;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: rgb(69, 69, 69);
+    border-radius: 25px;
+}
+  
+::-webkit-scrollbar-track{
+    background-color: var(--primary);
+}

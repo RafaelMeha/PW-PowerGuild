@@ -19,8 +19,11 @@ class Product {
             <li class="product-item">
                 <h2>${this.name}</h2>
                 <p>${this.description}</p>
-                <p>Price: $${this.price.toFixed(2)}</p>
-                <p>Discount: ${this.discount}%</p>
+                <div class="price-discount">
+                    <p>$${this.price.toFixed(2)}</p>
+                    <span>/</span>
+                    <p class="discount">${this.discount}%</p>
+                </div>
                 <p>Quantity: ${this.quantity}</p>
                 <p>Launch Date: ${this.launchDate.toDateString()}</p>
                 <p>Type: ${this.type}</p>
