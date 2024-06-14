@@ -83,9 +83,24 @@ main{
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
 }
 
-.product {
+.product-item a{
+    position: relative;
+    height: 10rem;
     padding: 1rem;
     border: 1px solid #ccc;
+    color: var(--white);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-item h2 {
+    width: 100%;
+    overflow: hidden;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    text-align: center;
 }
 
 .price-discount{

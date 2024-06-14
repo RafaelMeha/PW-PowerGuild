@@ -15,16 +15,18 @@ class Product {
     generateHtml() {
         return `
             <li class="product-item">
-                <h2><a href="productDetail.html?id=${this.id}">${this.name}</a></h2>
+            <a href="productDetail.html?id=${this.id}">
+                <h2>${this.name}</h2>
                 <p>${this.description}</p>
                 <div class="price-discount">
                     <p>$${this.price.toFixed(2)}</p>
                     <span>/</span>
                     <p class="discount">${this.discount}%</p>
-                </div>
-                <p>Quantity: ${this.quantity}</p>
-                <p>Launch Date: ${this.launchDate.toDateString()}</p>
-                <p>Category: ${this.category}</p>
+                    </div>
+                    <p>Quantity: ${this.quantity}</p>
+                    <p>Launch Date: ${this.launchDate.toDateString()}</p>
+                    <p>Category: ${this.category}</p>
+            </a>
             </li>
         `;
     }
