@@ -1,12 +1,11 @@
 window.onload = async function() {
     const params = new URLSearchParams(window.location.search);
-    const productId = 6;
+    const productId = params.get('id');
     const itemsContainer = document.getElementById('items');
    
     try {
         if (productId === '') {
-            console.log(productId);
-           // await fetchAndDisplayProducts();
+            await fetchAndDisplayProducts();
         } else {
             const response = await fetch(`/api/products/${productId}`);
             if (!response.ok) {
