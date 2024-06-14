@@ -13,7 +13,31 @@
 <body>
     <header id="header"></header>
     <main>
-        <ul id="filters"></ul>
+        <ul id="filters">
+            <div class="filters-type">
+                <h3>Category</h3>
+                <ul>
+                    <li><a href="products.html">All</a></li>
+                    <li><button id="shooter" onclick="filter('category', 'adventure')">Adventure</button></li>
+                    <li><button id="shooter" onclick="filter('category', 'action')">Action</button></li>
+                    <li><button id="shooter" onclick="filter('category', 'shooter')">Shooter</button></li>
+                    <li><button id="shooter" onclick="filter('category', 'fighting')">Fighting</button></li>
+                    <li><button id="shooter" onclick="filter('category', 'rpg')">RPG</button></li>
+                </ul>
+            </div>
+
+            <div class="filters-type">
+                <h3>Plantaform</h3>
+                <ul>
+                    <li><button onclick="filter('pc')">Pc</button></li>
+                    <li><button onclick="filter('playsation')">Playsation</button></li>
+                    <li><button onclick="filter('xbox')">xBox</button></li>
+                    <li><button onclick="filter('nintendo')">Nintendo</button></li>
+                </ul>
+            </div>
+
+            <a href="" id="wishlist"><h3>Wishlist</h3></a>
+        </ul>
         <ul id="items"></ul>
     </main>
 

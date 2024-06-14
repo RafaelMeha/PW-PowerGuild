@@ -7,7 +7,6 @@ class Product {
         this.price = price;
         this.quantity = quantity;
         this.launchDate = new Date(launchDate);
-        this.type = type;
         this.category = category;
         this.fkDevelopersId = fkDevelopersId;
         this.fkSuppliersId = fkSuppliersId;
@@ -16,7 +15,7 @@ class Product {
     // Method to generate HTML for the product
     generateHtml() {
         return `
-            <li class="product-item">
+            <li class="product">
                 <h2>${this.name}</h2>
                 <p>${this.description}</p>
                 <div class="price-discount">
@@ -26,7 +25,6 @@ class Product {
                 </div>
                 <p>Quantity: ${this.quantity}</p>
                 <p>Launch Date: ${this.launchDate.toDateString()}</p>
-                <p>Type: ${this.type}</p>
                 <p>Category: ${this.category}</p>
             </li>
         `;
