@@ -16,6 +16,7 @@ window.onload = async function() {
                 productData.discount,
                 productData.price,
                 productData.quantity,
+                productData.launch_date,
                 productData.launch_date, 
                 productData.Type,
                 productData.category,
