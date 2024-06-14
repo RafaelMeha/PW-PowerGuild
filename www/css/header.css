@@ -1,0 +1,87 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: calc(100% - 24rem);
+    padding: 1rem 12rem;
+    background-color: var(--primary);
+    border-bottom: 1px solid var(--nav-text);
+    box-shadow: 0px 0px 5px var(--nav-text);
+    color: var(--nav-text);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 999;
+}
+
+#logo{
+    cursor: pointer;
+}
+
+#power{
+    color: var(--secondary);
+}
+
+header input{
+    width: 50%;
+    padding: .2rem .8rem;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--nav-text);
+    color: var(--nav-text);
+    font-size: 1em;
+    outline: none;
+}
+
+header nav{
+    display: flex;
+    gap: 1.5rem;
+}
+
+.menu-settings{
+    position: relative;
+}
+
+.menu-settings h3{
+    cursor: default;
+}
+
+.menu-settings ul{
+    position: absolute;
+    white-space: nowrap;
+    list-style: none;
+    display: none;
+    flex-direction: column;
+}
+
+.menu-settings ul li a{
+    background-color: var(--primary);
+    cursor: pointer;
+    display: flex;
+    padding: .4rem .4rem .4rem 0rem;
+}
+
+.menu-settings ul li a:hover{
+    background-color: #353535;
+}
+
+.menu-settings h3:hover + ul{
+    display: flex;
+}
+
+.menu-settings ul:hover{
+    display: flex;
+}
+
+#shop, #profile {
+    cursor: pointer;
+}
+
+#shop:hover, #profile:hover{
+    color: var(--secondary);
+}
