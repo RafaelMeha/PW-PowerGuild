@@ -16,7 +16,7 @@ class Product {
     generateHtml() {
         return `
             <li class="product-item">
-                <h2><a href="productsDetails.html?id=${this.id}">${this.name}</a></h2>
+                <h2><a href="productDetail.html?id=${this.id}">${this.name}</a></h2>
                 <p>${this.description}</p>
                 <p>Price: $${this.price.toFixed(2)}</p>
                 <p>Discount: ${this.discount}%</p>

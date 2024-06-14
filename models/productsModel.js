@@ -1,5 +1,3 @@
-"use strict";
-
 const pool = require("../config/database");
 
 class Products {
@@ -55,10 +53,17 @@ class Products {
         }
     }
 
-    static async getById(id) {
-        const query = 'SELECT * FROM products WHERE id = ?';
-        const [rows] = await db.execute(query, [id]);
-        return rows[0];
+    static async getById(productId) {
+        try {
+            const [rows] = await pool.query("SELECT * FROM products WHERE id = ?", [productId]);
+            if (rows.length === 0) {
+                return null;
+            }
+            return rows[0];
+        } catch (error) {
+            console.error("Error fetching product:", error);
+            throw error;
+        }
     }
 }
 
