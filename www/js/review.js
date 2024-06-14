@@ -1,4 +1,4 @@
-class Reviews {
+class Review { 
     constructor(id, ratings, review_text, review_date, fk_user_id, fk_product_id ) {
         this.id = id;
         this.ratings = ratings;
@@ -9,31 +9,25 @@ class Reviews {
     }
 
     generateHtml() {
-        const productElement = document.createElement('li');
-        productElement.classList.add('product-item');
+        const reviewElement = document.createElement('div');
+        reviewElement.classList.add('review-item');
 
         const descriptionElement = document.createElement('div');
         descriptionElement.textContent = `Ratings: ${this.ratings}`;
-        productElement.appendChild(descriptionElement);
+        reviewElement.appendChild(descriptionElement);
 
-        const discountElement = document.createElement('div');
-        discountElement.textContent = `Review Text: ${this.review_text}`;
-        productElement.appendChild(discountElement);
+        const reviewTextElement = document.createElement('div'); 
+        reviewTextElement.textContent = `Review Text: ${this.review_text}`;
+        reviewElement.appendChild(reviewTextElement);
 
-        const nameElement = document.createElement('div');   
-        nameElement.textContent = this.review_date;
-        productElement.appendChild(nameElement);
+        const reviewDateElement = document.createElement('div'); 
+        reviewDateElement.textContent = `Review Date: ${this.review_date}`;
+        reviewElement.appendChild(reviewDateElement);
 
-        const priceElement = document.createElement('div');
-        priceElement.textContent = `Price: ${this.fk_user_id}`;
-        productElement.appendChild(priceElement);
+        const userIdElement = document.createElement('div'); 
+        userIdElement.textContent = `User ID: ${this.fk_user_id}`;
+        reviewElement.appendChild(userIdElement);
 
-        const quantityElement = document.createElement('div');
-        quantityElement.textContent = `Quantity: ${this.fk_product_id}`;
-        productElement.appendChild(quantityElement);
-
-        productElement.appendChild(productElement);
-        return productElement;
+        return reviewElement;
     }
 }
-

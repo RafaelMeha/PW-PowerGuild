@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Review = require("../models/reviewsModel");
- 
+
 router.get('/', async function(req, res) {
     try {
         let result = await Review.getAll();
