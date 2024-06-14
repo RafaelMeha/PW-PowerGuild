@@ -27,16 +27,16 @@ router.get('/:id', async function(req, res) {
     }
 });
 
-router.post('/', async function(req, res) {
-    try {
-        let newProduct = req.body;
-        let result = await Product.add(newProduct);
-        res.status(201).send(result);
-    } catch (error) {
-        console.log(error);
-        res.status(500).send(error);
-    }
-});
+    router.post('/', async function(req, res) {
+        try {
+            let newProduct = req.body;
+            let result = await Product.add(newProduct);
+            res.status(201).send(result);
+        } catch (error) {
+            console.log(error);
+            res.status(500).send(error);
+        }
+    });
 
 router.delete('/:id', async function(req, res) {
     try {

@@ -1,4 +1,3 @@
-
 class Reviews {
     constructor(id, ratings, review_text, review_date, fk_user_id, fk_product_id ) {
         this.id = id;

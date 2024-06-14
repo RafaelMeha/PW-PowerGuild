@@ -58,3 +58,4 @@ class Reviews {
     }
 }
 
+module.exports = Reviews;
