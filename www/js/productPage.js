@@ -17,15 +17,15 @@ window.onload = async function() {
                 productData.price,
                 productData.quantity,
                 productData.launch_date,
-                productData.launch_date, 
                 productData.Type,
                 productData.category,
                 productData.fk_developers_id,
                 productData.fk_suppliers_id
             );
-            itemsContainer.innerHTML += product.generateHtml();
+            const productElement = product.generateHtml();
+            itemsContainer.appendChild(productElement);
         });
     } catch (error) {
         console.error('Error fetching products:', error);
     }
-}
+};

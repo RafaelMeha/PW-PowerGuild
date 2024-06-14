@@ -10,7 +10,8 @@ window.onload = async function() {
                 throw new Error('Network response was not ok');
             }
             const productsData = await response.json();
-            itemsContainer.innerHTML = '';
+            clearElement(itemsContainer);
+
             productsData.forEach(productData => {
                 const product = new Product(
                     productData.id,
@@ -25,11 +26,25 @@ window.onload = async function() {
                     productData.fk_developers_id,
                     productData.fk_suppliers_id
                 );
-                itemsContainer.innerHTML += product.generateHtml() + `<button class="delete-btn" data-id="${product.id}">Delete</button>`;
+                const productElement = product.generateHtml();
+
+                const deleteButton = document.createElement('button');
+                deleteButton.className = 'delete-btn';
+                deleteButton.dataset.id = product.id;
+                deleteButton.textContent = 'Delete';
+                productElement.appendChild(deleteButton);
+
+                itemsContainer.appendChild(productElement);
             });
             addDeleteEventListeners();
         } catch (error) {
             console.error('Error fetching products:', error);
+        }
+    }
+
+    function clearElement(element) {
+        while (element.firstChild) {
+            element.removeChild(element.firstChild);
         }
     }
 
@@ -94,13 +109,16 @@ window.onload = async function() {
                 const response = await fetch(`/api/products/${productId}`);
                 if (!response.ok) {
                     if (response.status === 404) {
-                        itemsContainer.innerHTML = `No game with id: ${productId}`;
+                        clearElement(itemsContainer);
+                        const noGameMessage = document.createElement('div');
+                        noGameMessage.textContent = `No game with id: ${productId}`;
+                        itemsContainer.appendChild(noGameMessage);
                     } else {
                         throw new Error('Network response was not ok');
                     }
                 } else {
                     const productData = await response.json();
-                    itemsContainer.innerHTML = '';
+                    clearElement(itemsContainer);
                     const product = new Product(
                         productData.id,
                         productData.name,
@@ -114,7 +132,15 @@ window.onload = async function() {
                         productData.fk_developers_id,
                         productData.fk_suppliers_id
                     );
-                    itemsContainer.innerHTML += product.generateHtml() + `<button class="delete-btn" data-id="${product.id}">Delete</button>`;
+                    const productElement = product.generateHtml();
+
+                    const deleteButton = document.createElement('button');
+                    deleteButton.className = 'delete-btn';
+                    deleteButton.dataset.id = product.id;
+                    deleteButton.textContent = 'Delete';
+                    productElement.appendChild(deleteButton);
+
+                    itemsContainer.appendChild(productElement);
                     addDeleteEventListeners();
                 }
             }
