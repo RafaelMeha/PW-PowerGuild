@@ -34,4 +34,20 @@ router.delete('/:id', async function(req, res) {
     }
 });
 
+router.get('/:id', async function(req, res) {
+    try {
+        let productId = req.params.id;
+        console.log(productId);
+        let result = await Platform.getById(productId); 
+        if (result) {
+            res.send(result);
+        } else {
+            res.status(404).send({ message: "Produto não encontrado" });
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(error);
+    }
+});
+
 module.exports = router;

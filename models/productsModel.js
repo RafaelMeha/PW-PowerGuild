@@ -54,6 +54,12 @@ class Products {
             throw error;
         }
     }
+
+    static async getById(id) {
+        const query = 'SELECT * FROM products WHERE id = ?';
+        const [rows] = await db.execute(query, [id]);
+        return rows[0];
+    }
 }
 
 module.exports = Products;
