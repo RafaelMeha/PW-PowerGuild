@@ -13,11 +13,10 @@ class Product {
         this.fkSuppliersId = fkSuppliersId;
     }
 
-    // Method to generate HTML for the product
     generateHtml() {
         return `
             <li class="product-item">
-                <h2>${this.name}</h2>
+                <h2><a href="productDetail.html?id=${this.id}">${this.name}</a></h2>
                 <p>${this.description}</p>
                 <div class="price-discount">
                     <p>$${this.price.toFixed(2)}</p>

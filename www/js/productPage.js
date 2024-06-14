@@ -8,7 +8,6 @@ window.onload = async function() {
         }
         const productsData = await response.json();
 
-        // Create Product instances and generate HTML
         productsData.forEach(productData => {
             const product = new Product(
                 productData.id,
@@ -17,7 +16,7 @@ window.onload = async function() {
                 productData.discount,
                 productData.price,
                 productData.quantity,
-                productData.launch_date, // Ensure to use the correct key from the API response
+                productData.launch_date,
                 productData.Type,
                 productData.category,
                 productData.fk_developers_id,

@@ -1,5 +1,3 @@
-"use strict";
-
 const pool = require("../config/database");
 
 class Products {
