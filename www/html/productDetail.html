@@ -4,11 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Details</title>
-    
+    <link rel="stylesheet" href="../css/productDetail.css">
 </head>
 <body>
-    <ul id="items"></ul> 
+    <div class="container">
+        <button id="back-button">Back</button>
+        <div>
+            <ul id="items"></ul>
+        </div>
+        <h3>Reviews</h3>
+        <form id="comment-form">
+            <textarea id="comment-text" rows="2" cols="55" placeholder="Write your review..."></textarea>
+            <button type="submit">Add a Review</button>
+        </form>
+        <ul id="reviews"></ul>
+    </div>
+    
+    <script src="../js/review.js"></script>
     <script src="../js/productDetail.js"></script>
     <script src="../js/products.js"></script>
+    <script>
+        document.getElementById('back-button').addEventListener('click', function() {
+            window.history.back();
+        });
+    </script>
 </body>
 </html>
