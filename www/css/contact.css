@@ -1,0 +1,141 @@
+section{
+    display: flex;
+    gap: 5rem;
+    flex-direction: column;
+}
+
+.span{
+    color: #f8bb21;
+}
+
+form{
+    width: 840px;
+    max-width: 100%;
+    height: 28rem;
+    align-self: center;
+    display: grid;
+    gap: .5rem;
+    grid-template-columns:
+        repeat(4, 1fr);
+    grid-template-rows:
+        repeat(6, 1fr);
+}
+
+form input {
+    grid-column: span 2;
+    padding: 0px 1rem 0px 1rem;
+    color: var(--nav-text);
+    font-size: 14px;
+    outline: none;
+    background-color: var(--primary);
+    border: 2px solid var(--secondary);
+    border-radius: 10px;
+}
+
+form input:nth-child(6){
+    grid-column: span 4;
+}
+
+form input::placeholder{
+    color: var(--nav-text);
+}
+
+form datalist{
+    grid-column: span 2;
+    padding: 0px 1rem;
+    color: var(--text);
+    font-size: 14px;
+    background-color: var(--primary);
+    border: 2px solid var(--secondary);
+    border-radius: 10px;
+}
+
+form textarea{
+    grid-column: span 4;
+    grid-row: span 2;
+    padding: 1rem;
+    color: var(--nav-text);
+    font-size: 14px;
+    outline: none;
+    background-color: var(--primary);
+    border: 2px solid var(--secondary);
+    border-radius: 10px;
+    resize: none;
+}
+
+form textarea::placeholder {
+    color: var(--nav-text);
+    font-size: 14px;
+}
+
+#send {
+    font-size: 20px;
+    color: var(--nav-text);
+    background: transparent;
+    border: 2px solid var(--secondary);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: all 0.2s;
+    cursor: pointer;
+    display: flex;
+    gap: .3rem;
+    align-items: center;
+    justify-content: center;
+}
+  
+#send span {
+    transition: all 0.3s ease-in-out;
+}
+  
+#send svg {
+    display: block;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
+}
+
+#send:hover{
+    background-color: var(--secondary);
+}
+  
+#send:hover .svg-wrapper {
+    animation: fly-1 0.6s ease-in-out infinite alternate;
+}
+  
+#send:hover svg {
+    transform: translateX(1.2rem) rotate(45deg) scale(1.1);
+}
+  
+#send:hover span {
+    transform: translateX(10rem);
+}
+  
+#send:active {
+    transform: scale(0.95);
+}
+  
+@keyframes fly-1 {
+    from {
+        transform: translateY(0.1rem);
+    }
+    to {
+        transform: translateY(-0.1rem);
+    }
+}
+
+@media screen and (max-width: 500px){
+    #send_it{
+        grid-column: span 2;
+    }
+}
+
+.error{
+    border: 2px solid red;
+}
+
+.error:nth-child(4){
+    border: 2px solid var(--secondary);
+}
+
+.filled{
+    border: 2px solid var(--secondary);
+}

@@ -5,7 +5,7 @@ const routes = {
     'terms': '/html/terms.html',
     'privacy': '/html/privacy.html',
     'contact': '/html/contact.html',
-    'ceo': '/html/cep.html',
+    'ceo': '/html/ceo.html',
 };
 
 function navigateTo(routeName) {
