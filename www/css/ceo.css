@@ -1,0 +1,137 @@
+main{
+    min-height: 100lvh;
+    padding: 55px;
+}
+
+.mainTit{
+    color: #fff;
+    font-size: 50px;
+    position: relative;
+}
+
+.mainTit::after{
+    content:'';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--white);
+}
+
+
+.sec-text-big{
+    color: #ccc;
+    font-size: 25px;
+    padding: 1rem 0rem;main{
+    width: calc(100% - 19rem);
+    margin-left: 19rem;
+}
+}
+
+p{
+    color: #ccc;
+    font-size: 25px;
+}
+
+.spanCEO{
+    color: #f8bb21;
+}
+
+.logo{
+    color: #fff;
+}
+
+.CEOS{
+    width: 100%;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 
+    repeat(auto-fill, minmax(25rem, 1fr));
+}
+
+.ceo{
+    border: 1px solid var(--secondary);
+    padding: 1rem 0rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.ceo .pfp{
+    width: 15rem;
+    height: 15rem;
+    border-radius: 50%;
+    align-self: center;
+}
+
+.ceo h1{
+    color: #fff;
+    font-size: 48px;
+    text-align: center;
+    position: relative;
+    top: 5%;
+}
+
+.ceo h1::after{
+    content:'';
+    position: absolute;
+    top: 100%;
+    left: 0%;
+    width: 100%;
+    height: 1px;
+    background-color: var(--white);
+}
+
+.ceo p{
+    position: relative;
+    top: 5%;
+    padding: 5px;
+    text-align: center;
+}
+
+.ceo .medias{
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1rem 0rem 1rem;
+    gap: 0.3rem;
+}
+
+.ceo .each{
+    gap: 0.3rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.ceo .each a{
+    color: var(--nav-text);
+    text-decoration: none;
+}
+
+.ceo .each a:hover{
+    color: var(--secondary);
+}
+
+@media screen and (max-width: 1024px){
+    main{
+        width: 100%;
+        min-height: 100lvh;
+        margin-left: 0rem;
+    }
+
+    section{
+        width: calc(100% - 4rem);
+    }
+}
+
+@media screen and (max-width: 470px){
+    .CEOS{
+        grid-template-columns: 
+            repeat(auto-fill, minmax(80%, 1fr));
+    }
+
+    .ceo p{
+        font-size: 1rem;
+    }
+}
