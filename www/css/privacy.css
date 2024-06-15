@@ -1,0 +1,49 @@
+.privacy-section h1{
+    color: #fff;
+    font-size: 50px;
+    position: relative;
+}
+
+.privacy-section h1::after{
+    content:'';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--white);
+}
+
+.privacy-section .sec-text-big{
+    color: #ccc;
+    font-size: 20px;
+    margin: 15px;
+}
+
+.privacy-section .faq-content {
+  margin: 0 auto;
+  color: #ccc;
+}
+
+.privacy-section h2{
+    margin-top: 20px;
+    color: #f8bb21;
+}
+
+.privacy-section h3{
+    color: #ccc;
+}
+
+.privacy-section a{
+    text-decoration: none;
+    color: #f8bb21;
+}
+
+.privacy-section .logo{
+    color: #fff;
+}
+
+.privacy-section{
+    padding-top: 50px;
+    margin: 10px;
+}
