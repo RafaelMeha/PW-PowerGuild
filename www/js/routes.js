@@ -1,7 +1,7 @@
 const routes = {
     'home': '/',
     'products': '/html/products.html',
-    'faq': '/html/products.html',
+    'faq': '/html/faq.html',
     'terms': '/html/terms.html',
     'privacy': '/html/privacy.html',
     'contact': '/html/contact.html',

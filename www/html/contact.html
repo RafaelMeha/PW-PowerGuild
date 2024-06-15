@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Page</title>
+
+    <link rel="shortcut icon" href="../../ASSETS/logo/favicon-ri.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="../../CSS/root.css">
+    <link rel="stylesheet" href="../../CSS/main.css">
+    <link rel="stylesheet" href="../../CSS/contact.css">
+    <link rel="stylesheet" href="../../CSS/footer.css">
+
+    <!--Font Family-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href="../../index.html"><img src="../../ASSETS/logo/logo.png" alt="Logo" id="logo" draggable="false"></a>
+        <!-- Nav bar Menu -->
+        <nav>
+            <!-- Menu Section -->
+            <h3>Menu</h3>
+            <ul>
+                <li><a href="../../index.html"><img src="../../ASSETS/nav-icons/home.png" alt="Home" width="18rem">Home</a></li>
+                <li><a href="../Menu/shop.html"><img src="../../ASSETS/nav-icons/shop-cart (1).png" alt="Movies" width="18rem">Shop</a></li>
+                <li><a href="../Menu/community.html"><img src="../../ASSETS/nav-icons/community (1).png" alt="Series" width="18rem">Community</a></li>
+                <li><a href="../Menu/profile.html"><img src="../../ASSETS/nav-icons/user.png" alt="Account" width="18rem">Profile</a></li>
+            </ul>
+            <!-- Settings Section -->
+            <h3>Settings</h3>
+            <ul>
+                <li><a href="HTML/Settings/faq.html"><img src="../../ASSETS/nav-icons/faq.png" alt="FAQ" width="18rem">FAQ</a></li>
+                <li><a href="HTML/Settings/terms.html"><img src="../../ASSETS/nav-icons/terms.png" alt="Terms of Use" width="18rem">Terms of Use</a></li>
+                <li><a href="HTML/Settings/privacy.html"><img src="../../ASSETS/nav-icons/privacy.png" alt="Privacy" width="18rem">Privacy</a></li>
+                <li><a href="HTML/Settings/contact.html"><img src="../../ASSETS/nav-icons/contact.png" alt="Contact us" width="18rem">Contact us</a></li>
+            </ul>
+        </nav>
+        <li id="ceos">
+            <a href="HTML/ceo.html" ><img src="../../ASSETS/nav-icons/CEOS.png" alt="CEOS" width="18rem">CEOS</a>
+        </li>
+        </div>
+    </header>
+    <main>
+        <!-- Contact Section -->
+        <section>
+            <h1>C<span class="span">o</span>ntact us</h1>
+            
+            <form action="https://formspree.io/f/xoqogagr" method="POST" id="myForm">
+                <input type="text" name="nome" id="first_name" placeholder="FIRST NAME*" oninput="validarLetras(this)" required>
+                <input type="text" name="sobrenome" id="last_name" placeholder="LAST NAME*" oninput="validarLetras(this)" required>
+    
+                <input type="email" name="email" id="email" placeholder="EMAIL*" required>
+                <!-- <input type="text" name="phone" id="phone" placeholder="PHONE" maxlength="9" oninput="validarNumero(this)"> -->
+                <input list="countries" name="country" placeholder="Country">
+                <datalist id="countries"></datalist>
+    
+                <input type="text" name="subject" id="subject" placeholder="SUBJECT*" autocomplete="off" required>
+                <textarea name="mensagem" id="message" placeholder="MESSAGE*" autocomplete="off" required></textarea>
+    
+                <button type="submit" id="send">
+                    <div class="svg-wrapper-1">
+                        <div class="svg-wrapper">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            width="24"
+                            height="24"
+                          >
+                            <path fill="none" d="M0 0h24v24H0z"></path>
+                            <path
+                              fill="currentColor"
+                              d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"
+                            ></path>
+                          </svg>
+                        </div>
+                      </div>
+                      <span>Send</span>
+                </button>
+            </form>
+        </section>
+        <!-- Footer -->
+        <footer>
+            <div class="footer-con">
+                <div class="row">
+                    <div class="footer-col">
+                        <h4 class="footer-title">Menu</h4>
+                        <ul class="footer-menu">
+                            <li><a href="../../index.html">home</a></li>
+                            <li><a href="sub.html">subscription</a></li>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="terms.html">terms of use</a></li>
+                            <li><a href="#">Privacy</a></li>
+                            <li><a href="contact.html">contact Us</a></li>
+                            <li><a href="#">CEOS</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4 class="footer-title">Follow Us</h4>
+                        <div class="social-links">
+                            <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
+                            <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                        <p class="copyright">Copyright &copy; 2023 Tvbe, All rights Reserved</p>
+                    </div>
+                </div>
+            </div>
+        </footer>  
+    </main>
+    
+    <script src="../../js/platform.js"></script>
+    <script src="../../js/auth.js"></script>
+</body>
+</html>
