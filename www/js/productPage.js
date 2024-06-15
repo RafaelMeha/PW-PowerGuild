@@ -3,12 +3,10 @@ window.onload = async function() {
 
     try {
         const response = await fetch('/api/products');
-        const responsePlataform = await fetch('/api/platforms');
         if (!response.ok) {
             throw new Error('Network response was not ok');
         }
         const productsData = await response.json();
-        const plataformsData = await responsePlataform.json();
 
         productsData.forEach(productData => {
             const product = new Product(
@@ -25,14 +23,6 @@ window.onload = async function() {
             );
             const productElement = product.generateHtml();
             itemsContainer.appendChild(productElement);
-        });
-
-        plataformsData.forEach(plataformData => {
-            const platform = new Platform(
-                plataformData.fk_platforms_id
-            );
-            const plataformElement = platform.generateHtml();
-            itemsContainer.appendChild(plataformElement);
         });
     } catch (error) {
         console.error('Error fetching products:', error);

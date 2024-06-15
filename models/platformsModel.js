@@ -1,14 +1,14 @@
 const pool = require("../config/database");
 
 class Platforms {
-    constructor(fk_platforms_id, fk_products_id) {
-        this.fk_platforms_id = fk_platforms_id
-        this.fk_products_id = fk_products_id
+    constructor(id, name) {
+        this.id = id
+        this.name = name
     }
 
     static async getAll() {
         try {
-            const [rows] = await pool.query("SELECT * FROM products_platforms");
+            const [rows] = await pool.query("SELECT * FROM platforms");
             return rows;
         } catch (error) {
             console.error("Error fetching platforms:", error);
@@ -18,7 +18,7 @@ class Platforms {
 
     static async getById(platformId) {
         try {
-            const [rows] = await pool.query("SELECT * FROM products_platforms WHERE id = ?", [platformId]);
+            const [rows] = await pool.query("SELECT * FROM platforms WHERE id = ?", [platformId]);
             if (rows.length === 0) {
                 return null;
             }
@@ -30,11 +30,11 @@ class Platforms {
     }
 
     static async add(newPlatform) {
-        const { fk_platforms_id, fk_products_id } = newPlatform;
+        const { id, name } = newPlatform;
         try {
             const [result] = await pool.query(
-                "INSERT INTO products_platforms (fk_platforms_id, fk_products_id) VALUES (?, ?)",
-                [fk_platforms_id, fk_products_id]
+                "INSERT INTO platforms (id, name) VALUES (?, ?)",
+                [id, name]
             );
             return result;
         } catch (error) {

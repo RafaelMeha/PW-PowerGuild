@@ -17,6 +17,7 @@ class Product {
         productElement.classList.add('product-item');
 
         const productLink = document.createElement('a');
+        productLink.className = 'game-link';
         productLink.href = `http://localhost:3000/html/productDetail.html?id=${this.id}`;
         productLink.style.textDecoration = 'none';
         productLink.style.color = 'inherit';
