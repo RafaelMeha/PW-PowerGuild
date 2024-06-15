@@ -112,3 +112,13 @@ main{
 .discount{
     color: red;
 }
+
+img{
+    width: 194px;
+    height: 200px;
+    border-radius: 10px;
+}
+
+h2{
+    padding: 10px;
+}
