@@ -1,12 +1,14 @@
 window.onload = async function() {
-    const itemsContainer = document.getElementById('items')
+    const itemsContainer = document.getElementById('items');
 
     try {
-        const response = await fetch('/api/products')
+        const response = await fetch('/api/products');
+        const responsePlataform = await fetch('/api/platforms');
         if (!response.ok) {
-            throw new Error('Network response was not ok')
+            throw new Error('Network response was not ok');
         }
-        const productsData = await response.json()
+        const productsData = await response.json();
+        const plataformsData = await responsePlataform.json();
 
         productsData.forEach(productData => {
             const product = new Product(
@@ -17,90 +19,103 @@ window.onload = async function() {
                 productData.price,
                 productData.quantity,
                 productData.launch_date,
-                productData.Type,
                 productData.category,
                 productData.fk_developers_id,
                 productData.fk_suppliers_id
-            )
-            const productElement = product.generateHtml()
+            );
+            const productElement = product.generateHtml();
             itemsContainer.appendChild(productElement);
-        })
+        });
+
+        plataformsData.forEach(plataformData => {
+            const platform = new Platform(
+                plataformData.fk_platforms_id
+            );
+            const plataformElement = platform.generateHtml();
+            itemsContainer.appendChild(plataformElement);
+        });
     } catch (error) {
-        console.error('Error fetching products:', error)
-    }
-}
-
-async function filter(filterType, filter) {
-    const itemsContainer = document.getElementById('items')
-    itemsContainer.innerHTML = ''
-
-    try {
-        const response = await fetch('/api/products')
-        if (!response.ok) {
-            throw new Error('Network response was not ok')
-        }
-        const productsData = await response.json()
-
-       switch(filterType) {
-        case 'category':
-            var shooterProducts = productsData.filter(product  => product.category.toLowerCase() == filter.toLowerCase())
-            break
-       }
-
-        shooterProducts.forEach(productData => {
-            const product = new Product(
-                productData.id,
-                productData.name,
-                productData.description,
-                productData.discount,
-                productData.price,
-                productData.quantity,
-                productData.launchDate,
-                productData.category,
-                productData.fkDevelopersId,
-                productData.fkSuppliersId,
-                productData.image,
-                productData.genre
-            )
-            itemsContainer.innerHTML += product.generateHtml()
-        })
-    } catch (error) {
-        console.error('Error fetching products:', error)
-    }
-}
-async function searchGame() {
-    const itemsContainer = document.getElementById('items')
-    itemsContainer.innerHTML = ''
-
-    const searchGame = document.getElementById('search-game').value.toLowerCase()
-
-    try {
-        const response = await fetch('/api/products')
-        if (!response.ok) {
-            throw new Error('Network response was not ok')
-        }
-        const productsData = await response.json()
-
-        const shooterProducts = productsData.filter(x => x.name.toLowerCase().includes(searchGame))
-
-        shooterProducts.forEach(productData => {
-            const product = new Product(
-                productData.id,
-                productData.name,
-                productData.description,
-                productData.discount,
-                productData.price,
-                productData.quantity,
-                productData.launchDate,
-                productData.category,
-                productData.fkDevelopersId,
-                productData.fkSuppliersId,
-                productData.image,
-                productData.genre
-            )
-            itemsContainer.innerHTML += product.generateHtml()
-        })
-    } catch (error) {
-        console.error('Error fetching products:', error)
+        console.error('Error fetching products:', error);
     }
 };
+
+async function filter(filterType, filter) {
+    const itemsContainer = document.getElementById('items');
+    itemsContainer.innerHTML = '';
+
+    try {
+        const response = await fetch('/api/products');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const productsData = await response.json();
+
+        let filteredProducts = [];
+        
+        switch (filterType) {
+            case 'category':
+                filteredProducts = productsData.filter(product => product.category.toLowerCase() === filter.toLowerCase());
+                break;
+            default:
+                filteredProducts = productsData;
+                break;
+        }
+
+        filteredProducts.forEach(productData => {
+            const product = new Product(
+                productData.id,
+                productData.name,
+                productData.description,
+                productData.discount,
+                productData.price,
+                productData.quantity,
+                productData.launch_date,
+                productData.category,
+                productData.fk_developers_id,
+                productData.fk_suppliers_id
+            );
+            const productElement = product.generateHtml();
+            itemsContainer.appendChild(productElement);
+        });
+    } catch (error) {
+        console.error('Error fetching products:', error);
+    }
+}
+
+async function searchGame() {
+    const itemsContainer = document.getElementById('items');
+    itemsContainer.innerHTML = '';
+
+    const searchGame = document.getElementById('search-game').value.toLowerCase();
+
+    try {
+        const response = await fetch('/api/products');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const productsData = await response.json();
+
+        const filteredProducts = productsData.filter(product => product.name.toLowerCase().startsWith(searchGame));
+
+        filteredProducts.forEach(productData => {
+            const product = new Product(
+                productData.id,
+                productData.name,
+                productData.description,
+                productData.discount,
+                productData.price,
+                productData.quantity,
+                productData.launchDate,
+                productData.category,
+                productData.fkDevelopersId,
+                productData.fkSuppliersId,
+                productData.image,
+                productData.genre
+            );
+            const productElement = product.generateHtml();
+            itemsContainer.appendChild(productElement);
+        });
+    } catch (error) {
+        console.error('Error fetching products:', error);
+    }
+}

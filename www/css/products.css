@@ -84,8 +84,6 @@ main{
 }
 
 .product-item a{
-    position: relative;
-    height: 10rem;
     padding: 1rem;
     border: 1px solid #ccc;
     color: var(--white);

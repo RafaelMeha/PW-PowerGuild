@@ -11,6 +11,9 @@ app.use(express.static(path.join(__dirname, 'www')));
 let productsRoutes = require("./routes/productsRoute");
 app.use("/api/products", productsRoutes);
 
+let platformsRoutes = require("./routes/platformsRoute");
+app.use("/api/platforms", platformsRoutes);
+
 app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, 'www', 'admin.html'));
 });

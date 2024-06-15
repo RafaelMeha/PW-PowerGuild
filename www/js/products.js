@@ -1,5 +1,5 @@
 class Product {
-    constructor(id, name, description, discount, price, quantity, launch_date, type, category, fk_developers_id, fk_suppliers_id) {
+    constructor(id, name, description, discount, price, quantity, launch_date, category, fk_developers_id, fk_suppliers_id) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -7,7 +7,6 @@ class Product {
         this.price = price;
         this.quantity = quantity;
         this.launch_date = launch_date;
-        this.type = type;
         this.category = category;
         this.fk_developers_id = fk_developers_id;
         this.fk_suppliers_id = fk_suppliers_id;
@@ -46,10 +45,6 @@ class Product {
         const launchDateElement = document.createElement('div');
         launchDateElement.textContent = `Launch Date: ${this.launch_date}`;
         productLink.appendChild(launchDateElement);
-
-        const typeElement = document.createElement('div');
-        typeElement.textContent = `Type: ${this.type}`;
-        productLink.appendChild(typeElement);
 
         const categoryElement = document.createElement('div');
         categoryElement.textContent = `Category: ${this.category}`;
