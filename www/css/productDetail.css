@@ -1,0 +1,132 @@
+:root {
+    --primary: #1f1f1f;
+    --secondary: #f8bb21;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--primary);
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#back-button {
+    background-color: var(--secondary);
+    color: var(--primary);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+}
+
+#back-button:hover {
+    background-color: #e0a600;
+}
+
+h1 {
+    font-size: 2em;
+    color: var(--secondary);
+    text-align: center;
+    margin-top: 0;
+}
+
+h2 {
+    color: var(--secondary);
+    border-bottom: 2px solid var(--secondary);
+    padding-bottom: 10px;
+    margin-top: 30px;
+    font-size: 35px;
+}
+
+#items, #reviews {
+    list-style: none;
+    padding: 0;
+}
+
+#items li, #reviews li {
+    background-color: #333;
+    margin: 10px 0;
+    padding: 20px;
+    border-radius: 4px;
+}
+
+#comment-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#comment-text {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #444;
+    background-color: #333;
+    color: #fff;
+    margin-right: 10px;
+    resize: none;
+}
+
+#comment-text::placeholder {
+    color: #bbb;
+}
+
+button {
+    background-color: var(--secondary);
+    color: var(--primary);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #e0a600;
+}
+
+#reviews li + li {
+    margin-top: 20px;
+}
+
+img{
+    width: 400px;
+    height: 250px;
+    border-radius: 10px;
+}
+
+.review-item{
+    padding-top: 20px;
+}
+
+/* Width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: var(--primary); 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #151515; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+  
