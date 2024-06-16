@@ -82,7 +82,7 @@ window.onload = async function() {
         const newReview = {
             ratings: document.getElementById('rating-value').value,
             review_text: reviewText,
-            review_date: new Date().toLocaleTimeString('pt-PT'),
+            review_date: new Date().toLocaleString('pt-PT'),
             fk_user_id: 1,
             fk_product_id: productId
         };
