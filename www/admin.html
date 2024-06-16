@@ -3,114 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        main {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1, h2 {
-            text-align: center;
-        }
-        form {
-            margin-bottom: 20px;
-        }
-        form label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        form input[type="text"],
-        form input[type="number"],
-        form select,
-        form input[type="date"] {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-        form button[type="submit"] {
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-        button[type="submit"]:hover {
-            background-color: #0056b3;
-        }
-        .product-item {
-            margin-bottom: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        .delete-btn {
-            background-color: red;
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-        li {
-            margin-bottom: 10px;
-        }
-    </style>
+    <title>Admin Page</title>
 </head>
 <body>
-    <main>
-        <section>
-            <h1>Admin Panel</h1>
-            <form id="searchForm">
-                <label for="searchId">Search Product by ID:</label>
-                <input type="text" id="searchId" name="searchId">
-                <button type="submit">Search</button>
-            </form>
-            <form id="addProductForm" class="add-form">
-                <h2>Add Product</h2>
-                <label>Name: <input type="text" id="name"></label><br>
-                <label>Description: <input type="text" id="description"></label><br>
-                <label>Discount: <input type="number" id="discount"></label><br>
-                <label>Price: <input type="number" id="price" step="0.01"></label><br>
-                <label>Quantity: <input type="number" id="quantity"></label><br>
-                <label>Launch Date: <input type="date" id="launchDate"></label><br>
-                <label>Type: 
-                    <select id="type">
-                        <option value="Physical">Physical</option>
-                        <option value="Non-Physical">Non-Physical</option>
-                    </select>
-                </label><br>
-                <label>Category: <input type="text" id="category"></label><br>
-                <label>Developer ID: <input type="number" id="fkDevelopersId"></label><br>
-                <label>Supplier ID: <input type="number" id="fkSuppliersId"></label><br>
-                <button type="submit">Add Product</button>
-            </form>
-        </section>
-        <section>
-            <h2>Products</h2>
-            <ul id="items">
-            </ul>
-        </section>
-    </main>
-    <script src="./js/products.js"></script>
-    <script src="./js/adminPage.js"></script>
+    <ul>
+        <li><a href="../admin/products.html">Products</a></li>
+        <li><a href="../admin/reviews.html">Reviews</a></li>
+        <li></li>
+        <li></li>
+    </ul>
 </body>
 </html>

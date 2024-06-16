@@ -26,12 +26,38 @@ router.post('/', async function(req, res) {
 router.get('/:id', async function(req, res) {
     try {
         let reviewId = req.params.id;
-        let result = await Review.getById(reviewId);
+        let result = await Review.getReviewById(reviewId);
         if (!result) {
             res.status(404).send("Review not found");
         } else {
             res.send(result);
         }
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(error);
+    }
+});
+
+router.get('/product/:id', async function(req, res) {
+    try {
+        let reviewId = req.params.id;
+        let result = await Review.getById(reviewId);
+        if (!result) {
+            res.status(404).send("Product not found");
+        } else {
+            res.send(result);
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(error);
+    }
+});
+
+router.delete('/:id', async function(req, res) { 
+    try {
+        let reviewId = req.params.id;
+        let result = await Review.delete(reviewId);
+        res.status(204).send();
     } catch (error) {
         console.log(error);
         res.status(500).send(error);
