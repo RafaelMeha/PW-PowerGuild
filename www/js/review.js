@@ -1,5 +1,5 @@
 class Review { 
-    constructor(id, ratings, review_text, review_date, fk_user_id, fk_product_id ) {
+        constructor(id, ratings, review_text, review_date, fk_user_id, fk_product_id ) {
         this.id = id;
         this.ratings = ratings;
         this.review_text = review_text;

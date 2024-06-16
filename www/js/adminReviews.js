@@ -91,18 +91,18 @@ window.onload = async function() {
 
     searchForm.onsubmit = async function(event) {
         event.preventDefault();
-        const reviewId = document.getElementById('searchId').value;
+        const reviewsId = document.getElementById('searchId').value;
         try {
-            if (reviewId === '') {
+            if (reviewsId === '') {
                 await fetchAndDisplayReviews();
             } else {
-                const response = await fetch(`/api/reviews/${reviewId}`);
+                const response = await fetch(`/api/reviews/${reviewsId}`);
                 if (!response.ok) {
                     if (response.status === 404) {
                         clearElement(itemsContainer);
-                        const noReviewMessage = document.createElement('div');
-                        noReviewMessage.textContent = `No review with id: ${reviewId}`;
-                        itemsContainer.appendChild(noReviewMessage);
+                        const noGameMessage = document.createElement('div');
+                        noGameMessage.textContent = `No review with id: ${reviewsId}`;
+                        itemsContainer.appendChild(noGameMessage);
                     } else {
                         throw new Error('Network response was not ok');
                     }
