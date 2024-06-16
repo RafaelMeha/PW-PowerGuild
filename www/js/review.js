@@ -1,36 +1,39 @@
-class Review { 
-    constructor(id, ratings, review_text, review_date, fk_user_id, fk_product_id ) {
+class Review {
+    constructor(id, ratings, reviewText, reviewDate, fkUserId, fkProductId) {
         this.id = id;
         this.ratings = ratings;
-        this.review_text = review_text;
-        this.review_date = review_date;
-        this.fk_user_id = fk_user_id;
-        this.fk_product_id = fk_product_id;
+        this.reviewText = reviewText;
+        this.reviewDate = reviewDate;
+        this.fkUserId = fkUserId;
+        this.fkProductId = fkProductId;
     }
 
     generateHtml() {
-        const reviewElement = document.createElement('div');
-        reviewElement.classList.add('review-item');
+        const reviewElement = document.createElement('li');
+        reviewElement.classList.add('review');
 
-        const reviewDateElement = document.createElement('div');
-        reviewDateElement.textContent = `${this.review_date}`;
-        reviewElement.appendChild(reviewDateElement);
-
-        const descriptionElement = document.createElement('div');
-        descriptionElement.classList.add('review-rating');
-        descriptionElement.textContent = `Rating: ${this.ratings}`;
-        reviewElement.appendChild(descriptionElement);
-
-        const userIdElement = document.createElement('div'); 
-        userIdElement.textContent = `User ID: ${this.fk_user_id}`;
-        reviewElement.appendChild(userIdElement);
-
-        const reviewTextElement = document.createElement('div'); 
-        descriptionElement.classList.add('review-text');
-        reviewTextElement.textContent = `${this.review_text}`;
+        const reviewTextElement = document.createElement('div');
+        reviewTextElement.classList.add('review-text');
+        reviewTextElement.textContent = this.reviewText;
         reviewElement.appendChild(reviewTextElement);
 
+        const reviewDateElement = document.createElement('div');
+        reviewDateElement.classList.add('review-date');
+        reviewDateElement.textContent = this.reviewDate;
+        reviewElement.appendChild(reviewDateElement);
+
+        const reviewRatingElement = document.createElement('div');
+        reviewRatingElement.classList.add('review-rating');
+        reviewRatingElement.innerHTML = this.generateStarRating(this.ratings);
+        reviewElement.appendChild(reviewRatingElement);
 
         return reviewElement;
+    }
+
+    generateStarRating(rating) {
+        const fullStar = '<span class="star">&#9733;</span>';
+        const emptyStar = '<span class="star">&#9734;</span>';
+        const starRating = fullStar.repeat(rating) + emptyStar.repeat(5 - rating);
+        return starRating;
     }
 }
