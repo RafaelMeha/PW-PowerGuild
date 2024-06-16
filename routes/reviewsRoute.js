@@ -40,10 +40,10 @@ router.get('/:id', async function(req, res) {
 
 router.get('/product/:id', async function(req, res) {
     try {
-        let reviewId = req.params.id;
-        let result = await Review.getById(reviewId);
-        if (!result) {
-            res.status(404).send("Product not found");
+        let productId = req.params.id;
+        let result = await Review.getByProductId(productId);
+        if (!result || result.length === 0) {
+            res.status(404).send("No reviews found for the product");
         } else {
             res.send(result);
         }

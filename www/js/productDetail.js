@@ -7,15 +7,15 @@ window.onload = async function() {
 
     async function loadReviews(){
         try {
-            const response = await fetch(`/api/reviews/${productId}`);
+            const response = await fetch(`/api/reviews/product/${productId}`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
             const reviewsData = await response.json();
             clearElement(reviewsContainer);
-            
+           
             reviewsData.forEach(reviewData => {
-                const review = new Review( 
+                const review = new Review(
                     reviewData.id,
                     reviewData.ratings,
                     reviewData.review_text,
@@ -23,14 +23,14 @@ window.onload = async function() {
                     reviewData.fk_user_id,
                     reviewData.fk_product_id
                 );
-                const reviewElement = review.generateHtml(); 
+                const reviewElement = review.generateHtml();
                 reviewsContainer.appendChild(reviewElement);
             });
         } catch (error) {
-            console.error('Error fetching products:', error);
+            console.error('Error fetching reviews:', error);
         }
     }
-
+    
     try {
         if (productId === '') {
             await fetchAndDisplayProducts();
