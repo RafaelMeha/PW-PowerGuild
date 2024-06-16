@@ -25,10 +25,10 @@ window.onload = async function() {
     } catch (error) {
         console.error('Error fetching products:', error);
     }
-}
+};
 
 function clearElement(element) {
     while (element.firstChild) {
         element.removeChild(element.firstChild);
     }
-}
+};
