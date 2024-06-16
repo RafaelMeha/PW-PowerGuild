@@ -14,6 +14,9 @@ app.use("/api/products", productsRoutes);
 let reviewRoutes = require("./routes/reviewsRoute");
 app.use("/api/reviews", reviewRoutes);
 
+let userRoutes = require("./routes/usersRoute");
+app.use("/api/users", userRoutes);
+
 app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, 'www', 'admin.html'));
 });

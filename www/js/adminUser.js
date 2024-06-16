@@ -1,39 +1,37 @@
 window.onload = async function() {
-    const itemsContainer = document.getElementById('reviews');
-    const addProductForm = document.getElementById('addProductForm');
+    const itemsContainer = document.getElementById('users');
+    const addProductForm = document.getElementById('addUserForm');
     const searchForm = document.getElementById('searchForm');
 
-    async function fetchAndDisplayReviews() {
+    async function fetchAndDisplayUsers() {
         try {
-            const response = await fetch('/api/reviews');
+            const response = await fetch('/api/users');
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            const reviewsData = await response.json();
+            const usersData = await response.json();
             clearElement(itemsContainer);
 
-            reviewsData.forEach(reviewData => {
-                const review = new Review(
-                    reviewData.id,
-                    reviewData.ratings,
-                    reviewData.review_text,
-                    reviewData.review_date,
-                    reviewData.fk_user_id,
-                    reviewData.fk_product_id
+            usersData.forEach(userData => {
+                const user = new User(
+                    userData.id,
+                    userData.name,
+                    userData.email,
+                    userData.pwd
                 );
-                const reviewElement = review.generateHtml();
+                const userElement = user.generateHtml();
 
                 const deleteButton = document.createElement('button');
                 deleteButton.className = 'delete-btn';
-                deleteButton.dataset.id = review.id;
+                deleteButton.dataset.id = user.id;
                 deleteButton.textContent = 'Delete';
-                reviewElement.appendChild(deleteButton);
+                userElement.appendChild(deleteButton);
 
-                itemsContainer.appendChild(reviewElement);
+                itemsContainer.appendChild(userElement);
             });
             addDeleteEventListeners();
         } catch (error) {
-            console.error('Error fetching reviews:', error);
+            console.error('Error fetching users:', error);
         }
     }
 
@@ -45,25 +43,23 @@ window.onload = async function() {
 
     addProductForm.onsubmit = async function(event) {
         event.preventDefault();
-        const newReview = {
-            ratings: document.getElementById('ratings').value,
-            review_text: document.getElementById('description').value,
-            review_date: new Date().toLocaleTimeString('pt-PT') ,
-            fk_user_id: 1,
-            fk_product_id: document.getElementById('product_id').value
+        const newUser = {
+            name: document.getElementById('name').value,
+            email: document.getElementById('email').value,
+            pwd: document.getElementById('password').value
         };
         try {
-            const response = await fetch('/api/reviews', {
+            const response = await fetch('/api/users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(newReview)
+                body: JSON.stringify(newUser)
             });
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            await fetchAndDisplayReviews();
+            await fetchAndDisplayUsers();
             addProductForm.reset();
         } catch (error) {
             console.error('Error adding review:', error);
@@ -73,15 +69,15 @@ window.onload = async function() {
     function addDeleteEventListeners() {
         document.querySelectorAll('.delete-btn').forEach(button => {
             button.onclick = async function() {
-                const reviewId = this.getAttribute('data-id');
+                const userId = this.getAttribute('data-id');
                 try {
-                    const response = await fetch(`/api/reviews/${reviewId}`, {
+                    const response = await fetch(`/api/users/${userId}`, {
                         method: 'DELETE'
                     });
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
                     }
-                    await fetchAndDisplayReviews();
+                    await fetchAndDisplayUsers();
                 } catch (error) {
                     console.error('Error deleting review:', error);
                 }
@@ -91,48 +87,45 @@ window.onload = async function() {
 
     searchForm.onsubmit = async function(event) {
         event.preventDefault();
-        const reviewsId = document.getElementById('searchId').value;
+        const usersId = document.getElementById('searchId').value;
         try {
-            if (reviewsId === '') {
-                await fetchAndDisplayReviews();
+            if (usersId === '') {
+                await fetchAndDisplayUsers();
             } else {
-                const response = await fetch(`/api/reviews/${reviewsId}`);
+                const response = await fetch(`/api/users/${usersId}`);
                 if (!response.ok) {
                     if (response.status === 404) {
                         clearElement(itemsContainer);
                         const noGameMessage = document.createElement('div');
-                        noGameMessage.textContent = `No review with id: ${reviewsId}`;
+                        noGameMessage.textContent = `No review with id: ${usersId}`;
                         itemsContainer.appendChild(noGameMessage);
                     } else {
                         throw new Error('Network response was not ok');
                     }
                 } else {
-                    const reviewData = await response.json();
+                    const userData = await response.json();
                     clearElement(itemsContainer);
-                    const review = new Review(
-                        reviewData.id,
-                        reviewData.ratings,
-                        reviewData.review_text,
-                        reviewData.review_date,
-                        reviewData.fk_user_id,
-                        reviewData.fk_product_id
+                    const user = new User(
+                        userData.id,
+                        userData.name,
+                        userData.email,
+                        userData.pwd,
                     );
-                    const reviewElement = review.generateHtml();
+                    const userElement = user.generateHtml();
 
                     const deleteButton = document.createElement('button');
                     deleteButton.className = 'delete-btn';
-                    deleteButton.dataset.id = review.id;
+                    deleteButton.dataset.id = user.id;
                     deleteButton.textContent = 'Delete';
-                    reviewElement.appendChild(deleteButton);
+                    userElement.appendChild(deleteButton);
 
-                    itemsContainer.appendChild(reviewElement);
+                    itemsContainer.appendChild(userElement);
                     addDeleteEventListeners();
                 }
             }
         } catch (error) {
-            console.error('Error searching review:', error);
+            console.error('Error searching user:', error);
         }
     };
-
-    fetchAndDisplayReviews();
+    fetchAndDisplayUsers();
 };
