@@ -20,15 +20,12 @@ class Review {
         }
     }
 
-    static async getById(reviewId) {
+    static async getByProductId(productId) {
         try {
-            const [rows] = await pool.query("SELECT * FROM reviews WHERE fk_product_id = ?", [reviewId]);
-            if (rows.length === 0) {
-                return null;
-            }
-            return rows[0];
+            const [rows] = await pool.query("SELECT * FROM reviews WHERE fk_product_id = ?", [productId]);
+            return rows;
         } catch (error) {
-            console.error("Error fetching review:", error);
+            console.error("Error fetching reviews by product ID:", error);
             throw error;
         }
     }
