@@ -128,14 +128,23 @@ img {
     margin-top: 2em;
 }
 
-.review-item {
-    margin-bottom: 1em;
-    border: 1px solid white;
-    border-radius: 5px;
+.review-text {
+    margin-top: 1em;
 }
 
-.review-text {
-    margin-bottom: 1em;
+.review-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.review-date {
+    margin-right: 1em;
+}
+
+.star {
+    width: 20px;
+    height: 20px;
+    margin-right: 2px;
 }
 
 ::-webkit-scrollbar {

@@ -72,9 +72,16 @@ window.onload = async function() {
 
     addReviewForm.onsubmit = async function(event) {
         event.preventDefault();
+        
+        const reviewText = document.getElementById('comment-text').value.trim();
+        if (reviewText === '') {
+            alert('Please enter a comment before submitting.');
+            return;
+        }
+
         const newReview = {
             ratings: document.getElementById('rating-value').value,
-            review_text: document.getElementById('comment-text').value,
+            review_text: reviewText,
             review_date: new Date().toLocaleTimeString('pt-PT'),
             fk_user_id: 1,
             fk_product_id: productId

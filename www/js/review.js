@@ -12,28 +12,38 @@ class Review {
         const reviewElement = document.createElement('li');
         reviewElement.classList.add('review');
 
+        const reviewHeaderElement = document.createElement('div');
+        reviewHeaderElement.classList.add('review-header');
+
+        const reviewRatingElement = document.createElement('div');
+        reviewRatingElement.classList.add('review-rating');
+        this.generateStarRating(this.ratings, reviewRatingElement);
+        reviewHeaderElement.appendChild(reviewRatingElement);
+
+        const reviewDateElement = document.createElement('div');
+        reviewDateElement.classList.add('review-date');
+        reviewDateElement.textContent = this.reviewDate;
+        reviewHeaderElement.appendChild(reviewDateElement);
+
+        reviewElement.appendChild(reviewHeaderElement);
+
         const reviewTextElement = document.createElement('div');
         reviewTextElement.classList.add('review-text');
         reviewTextElement.textContent = this.reviewText;
         reviewElement.appendChild(reviewTextElement);
 
-        const reviewDateElement = document.createElement('div');
-        reviewDateElement.classList.add('review-date');
-        reviewDateElement.textContent = this.reviewDate;
-        reviewElement.appendChild(reviewDateElement);
-
-        const reviewRatingElement = document.createElement('div');
-        reviewRatingElement.classList.add('review-rating');
-        reviewRatingElement.innerHTML = this.generateStarRating(this.ratings);
-        reviewElement.appendChild(reviewRatingElement);
-
         return reviewElement;
     }
 
-    generateStarRating(rating) {
-        const fullStar = '<span class="star">&#9733;</span>';
-        const emptyStar = '<span class="star">&#9734;</span>';
-        const starRating = fullStar.repeat(rating) + emptyStar.repeat(5 - rating);
-        return starRating;
+    generateStarRating(rating, parentElement) {
+        const fullStarPath = '../assets/icons/fullStar.png';
+        const emptyStarPath = '../assets/icons/emptyStar.png';
+
+        for (let i = 0; i < 5; i++) {
+            const star = document.createElement('img');
+            star.classList.add('star');
+            star.src = i < rating ? fullStarPath : emptyStarPath;
+            parentElement.appendChild(star);
+        }
     }
 }
