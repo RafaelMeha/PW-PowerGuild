@@ -1,33 +1,49 @@
-class Review { 
-    constructor(id, ratings, review_text, review_date, fk_user_id, fk_product_id ) {
+class Review {
+    constructor(id, ratings, reviewText, reviewDate, fkUserId, fkProductId) {
         this.id = id;
         this.ratings = ratings;
-        this.review_text = review_text;
-        this.review_date = review_date;
-        this.fk_user_id = fk_user_id;
-        this.fk_product_id = fk_product_id;
+        this.reviewText = reviewText;
+        this.reviewDate = reviewDate;
+        this.fkUserId = fkUserId;
+        this.fkProductId = fkProductId;
     }
 
     generateHtml() {
-        const reviewElement = document.createElement('div');
-        reviewElement.classList.add('review-item');
+        const reviewElement = document.createElement('li');
+        reviewElement.classList.add('review');
 
-        const descriptionElement = document.createElement('div');
-        descriptionElement.textContent = `Ratings: ${this.ratings}`;
-        reviewElement.appendChild(descriptionElement);
+        const reviewHeaderElement = document.createElement('div');
+        reviewHeaderElement.classList.add('review-header');
 
-        const reviewTextElement = document.createElement('div'); 
-        reviewTextElement.textContent = `Review Text: ${this.review_text}`;
+        const reviewRatingElement = document.createElement('div');
+        reviewRatingElement.classList.add('review-rating');
+        this.generateStarRating(this.ratings, reviewRatingElement);
+        reviewHeaderElement.appendChild(reviewRatingElement);
+
+        const reviewDateElement = document.createElement('div');
+        reviewDateElement.classList.add('review-date');
+        reviewDateElement.textContent = this.reviewDate;
+        reviewHeaderElement.appendChild(reviewDateElement);
+
+        reviewElement.appendChild(reviewHeaderElement);
+
+        const reviewTextElement = document.createElement('div');
+        reviewTextElement.classList.add('review-text');
+        reviewTextElement.textContent = this.reviewText;
         reviewElement.appendChild(reviewTextElement);
 
-        const reviewDateElement = document.createElement('div'); 
-        reviewDateElement.textContent = `Review Date: ${this.review_date}`;
-        reviewElement.appendChild(reviewDateElement);
-
-        const userIdElement = document.createElement('div'); 
-        userIdElement.textContent = `User ID: ${this.fk_user_id}`;
-        reviewElement.appendChild(userIdElement);
-
         return reviewElement;
+    }
+
+    generateStarRating(rating, parentElement) {
+        const fullStarPath = '../assets/icons/fullStar.png';
+        const emptyStarPath = '../assets/icons/emptyStar.png';
+
+        for (let i = 0; i < 5; i++) {
+            const star = document.createElement('img');
+            star.classList.add('star');
+            star.src = i < rating ? fullStarPath : emptyStarPath;
+            parentElement.appendChild(star);
+        }
     }
 }

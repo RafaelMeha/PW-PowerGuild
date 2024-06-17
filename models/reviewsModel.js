@@ -1,4 +1,3 @@
-
 const pool = require("../config/database");
 
 class Review { 
@@ -21,13 +20,23 @@ class Review {
         }
     }
 
-    static async getById(reviewId) {
+    static async getByProductId(productId) {
         try {
-            const [rows] = await pool.query("SELECT * FROM reviews WHERE fk_product_id = ?", [reviewId]);
+            const [rows] = await pool.query("SELECT * FROM reviews WHERE fk_product_id = ?", [productId]);
+            return rows;
+        } catch (error) {
+            console.error("Error fetching reviews by product ID:", error);
+            throw error;
+        }
+    }
+
+    static async getReviewById(reviewId) {
+        try {
+            const [rows] = await pool.query("SELECT * FROM reviews WHERE id = ?", [reviewId]);
             if (rows.length === 0) {
                 return null;
             }
-            return rows;
+            return rows[0];
         } catch (error) {
             console.error("Error fetching review:", error);
             throw error;
@@ -41,9 +50,19 @@ class Review {
                 "INSERT INTO reviews (ratings, review_text, review_date, fk_user_id, fk_product_id) VALUES (?, ?, ?, ?, ?)", 
                 [ratings, review_text, review_date, fk_user_id, fk_product_id]
             );
-            return result;
+            return { id: result.insertId, ...newReview };
         } catch (error) {
             console.error("Error adding review:", error);
+            throw error;
+        }
+    }
+
+    static async delete(reviewId) {
+        try {
+            const [result] = await pool.query("DELETE FROM reviews WHERE id = ?", [reviewId]);
+            return result;
+        } catch (error) {
+            console.error("Error deleting review:", error);
             throw error;
         }
     }

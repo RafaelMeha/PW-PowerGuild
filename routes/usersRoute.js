@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const Review = require("../models/reviewsModel");
+const User = require("../models/usersModel");
 
 router.get('/', async function(req, res) {
     try {
-        let result = await Review.getAll();
+        let result = await User.getAll();
         res.send(result);
     } catch (error) {
         console.log(error);
@@ -14,8 +14,8 @@ router.get('/', async function(req, res) {
 
 router.post('/', async function(req, res) {
     try {
-        let newReview = req.body;
-        let result = await Review.add(newReview);
+        let newUser = req.body;
+        let result = await User.add(newUser);
         res.status(201).send(result);
     } catch (error) {
         console.log(error);
@@ -25,8 +25,8 @@ router.post('/', async function(req, res) {
 
 router.get('/:id', async function(req, res) {
     try {
-        let reviewId = req.params.id;
-        let result = await Review.getReviewById(reviewId);
+        let userId = req.params.id;
+        let result = await User.getById(userId);
         if (!result) {
             res.status(404).send("Review not found");
         } else {
@@ -38,25 +38,10 @@ router.get('/:id', async function(req, res) {
     }
 });
 
-router.get('/product/:id', async function(req, res) {
-    try {
-        let productId = req.params.id;
-        let result = await Review.getByProductId(productId);
-        if (!result || result.length === 0) {
-            res.status(404).send("No reviews found for the product");
-        } else {
-            res.send(result);
-        }
-    } catch (error) {
-        console.log(error);
-        res.status(500).send(error);
-    }
-});
-
 router.delete('/:id', async function(req, res) { 
     try {
-        let reviewId = req.params.id;
-        let result = await Review.delete(reviewId);
+        let userId = req.params.id;
+        let result = await Review.delete(userId);
         res.status(204).send();
     } catch (error) {
         console.log(error);

@@ -48,12 +48,14 @@ h2 {
     font-size: 35px;
 }
 
-#items, #reviews {
+#items,
+#reviews {
     list-style: none;
     padding: 0;
 }
 
-#items li, #reviews li {
+#items li,
+#reviews li {
     background-color: #333;
     margin: 10px 0;
     padding: 20px;
@@ -64,12 +66,12 @@ h2 {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 20px;
 }
 
 #comment-text {
     flex-grow: 1;
-    padding: 10px;
+    width: 50em;
+    height: 5em;
     border-radius: 4px;
     border: 1px solid #444;
     background-color: #333;
@@ -95,38 +97,69 @@ button:hover {
     background-color: #e0a600;
 }
 
-#reviews li + li {
+#reviews li+li {
     margin-top: 20px;
 }
 
-img{
+img {
     width: 400px;
     height: 250px;
     border-radius: 10px;
 }
 
-.review-item{
-    padding-top: 20px;
+.rating input {
+    appearance: none;
+    width: 2em;
+    height: 2em;
+    background: url(../assets/icons/emptyStar.png) center/contain no-repeat;
+    cursor: pointer;
 }
 
-/* Width */
+.rating input:checked {
+    background: url(../assets/icons/fullStar.png) center/contain no-repeat
+}
+
+.rating .star:hover {
+    transform: scale(1.1);
+}
+
+.addReview_button {
+    height: 4em;
+    margin-top: 2em;
+}
+
+.review-text {
+    margin-top: 1em;
+}
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.review-date {
+    margin-right: 1em;
+}
+
+.star {
+    width: 20px;
+    height: 20px;
+    margin-right: 2px;
+}
+
 ::-webkit-scrollbar {
     width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: var(--primary); 
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #151515; 
+}
+
+::-webkit-scrollbar-track {
+    background: var(--primary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #151515;
     border-radius: 10px;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-  }
-  
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
