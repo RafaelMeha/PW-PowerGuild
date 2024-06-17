@@ -31,6 +31,8 @@ window.onload = async function() {
             const productElement = product.generateHtml();
             itemsContainer.appendChild(productElement);
         });
+
+        await markWishlistCheckboxes();
     } catch (error) {
         console.error('Error fetching products or wishlists:', error);
     }
@@ -75,5 +77,64 @@ async function deleteToProductsWishlist(productId) {
 
     } catch (error) {
         console.error('Error removing product from products_wishlists:', error);
+    }
+}
+
+async function searchGame() {
+    const itemsContainer = document.getElementById('items');
+    itemsContainer.innerHTML = '';
+
+    const searchGame = document.getElementById('search-game').value.toLowerCase();
+
+    try {
+        const response = await fetch('/api/products');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const productsData = await response.json();
+
+        const filteredProducts = productsData.filter(product => product.name.toLowerCase().startsWith(searchGame));
+
+        filteredProducts.forEach(productData => {
+            const product = new Product(
+                productData.id,
+                productData.name,
+                productData.description,
+                productData.discount,
+                productData.price,
+                productData.quantity,
+                productData.launchDate,
+                productData.category,
+                productData.fkDevelopersId,
+                productData.fkSuppliersId,
+                productData.image,
+                productData.genre
+            );
+            const productElement = product.generateHtml();
+            itemsContainer.appendChild(productElement);
+        });
+    } catch (error) {
+        console.error('Error fetching products:', error);
+    }
+}   
+
+async function markWishlistCheckboxes() {
+    try {
+        const response = await fetch('/api/productswishlists');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const productsWishlistsData = await response.json();
+
+        const wishlistProductIds = productsWishlistsData.map(pw => pw.fk_products_id);
+
+        document.querySelectorAll('.wishlist-checkbox').forEach(checkbox => {
+            const productId = parseInt(checkbox.dataset.productId, 10);
+            if (wishlistProductIds.includes(productId)) {
+                checkbox.checked = true;
+            }
+        });
+    } catch (error) {
+        console.error('Error fetching wishlist data:', error);
     }
 }

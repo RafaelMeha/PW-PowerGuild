@@ -88,11 +88,14 @@ class Product {
 
         const wishlist = document.createElement('input');
         wishlist.type = 'checkbox';
+        wishlist.classList.add('wishlist-checkbox');
+        wishlist.dataset.productId = this.id;
         wishlist.addEventListener('change', () => {
             if(wishlist.checked) {
                 addToProductsWishlist(this.id)
             } else  {
                 deleteToProductsWishlist(this.id)
+                location.reload()
             }
         });
         infoContainer.appendChild(wishlist);
