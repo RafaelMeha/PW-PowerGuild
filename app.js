@@ -23,6 +23,9 @@ app.use("/api/productswishlists", ProductsWishlistsRoute);
 let reviewRoutes = require("./routes/reviewsRoute");
 app.use("/api/reviews", reviewRoutes);
 
+let salesProductsRoute = require("./routes/sales-productsRoute");
+app.use("/api/salesproducts", salesProductsRoute);
+
 let userRoutes = require("./routes/usersRoute");
 app.use("/api/users", userRoutes);
 

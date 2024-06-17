@@ -1,12 +1,11 @@
 const pool = require("../config/database");
 
-class Platforms {
-    constructor(id, quantity, price, fk_sales_id, fk_products_platforms_id) {
+class SalesProducts {
+    constructor(id, quantity, price, fk_products_id) {
         this.id = id
         this.quantity = quantity
         this.price = price
-        this.fk_sales_id = fk_sales_id
-        this.fk_products_platforms_id = fk_products_platforms_id
+        this.fk_products_id = fk_products_id
     }
 
     static async getAll() {
@@ -33,11 +32,11 @@ class Platforms {
     }
 
     static async add(NewSalesProducts) {
-        const { id, quantity, price, fk_sales_id, fk_products_platforms_id } = NewSalesProducts;
+        const { quantity, price, fk_products_id } = NewSalesProducts;
         try {
             const [result] = await pool.query(
-                "INSERT INTO sales_products (id, quantity, price, fk_sales_id, fk_products_platforms_id) VALUES (?, ?, ?, ?, ?)",
-                [id, quantity, price, fk_sales_id, fk_products_platforms_id]
+                "INSERT INTO sales_products (quantity, price, fk_products_id) VALUES ( ?, ?, ?)",
+                [quantity, price, fk_products_id]
             );
             return result;
         } catch (error) {
@@ -45,6 +44,16 @@ class Platforms {
             throw error;
         }
     }
+
+    static async delete(productsPlatformsId) {
+        try {
+            const [result] = await pool.query("DELETE FROM sales_products WHERE fk_products_id = ?", [productsPlatformsId]);
+            return result;
+        } catch (error) {
+            console.error("Error removing product from sales_products:", error);
+            throw error;
+        }
+    }
 }
 
-module.exports = Platforms;
+module.exports = SalesProducts;

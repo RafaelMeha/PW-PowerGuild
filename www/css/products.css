@@ -116,7 +116,7 @@ main{
     color: red;
 }
 
-.product-item input{
+.wishlist-checkbox{
     appearance: none;
     width: 2rem;
     height: 2rem;
@@ -124,11 +124,11 @@ main{
     cursor: pointer;
 }
 
-.product-item input:checked{
+.wishlist-checkbox:checked{
     background: url(../assets/icons/wishlistSave.png) center/contain no-repeat;
 }
 
-.product-item input:active{
+.wishlist-checkbox:active{
     transition: 1s linear;
     animation: test 1s linear;
 }
@@ -158,11 +158,18 @@ h2{
     padding: 10px;
 }
 
-.add-cart{
+.sales{
+    appearance: none;
     width: 2rem;
     height: 2rem;
-    background-color: transparent;
     background: url(../assets/icons/cart-empty.png) center/contain no-repeat;
-    border: none;
     cursor: pointer;
+}
+
+.sales:checked{
+    background: url(../assets/icons/cart.png) center/contain no-repeat;
+}
+
+.sales:active{
+    transform: scale(1.1);
 }

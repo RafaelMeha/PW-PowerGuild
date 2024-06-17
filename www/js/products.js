@@ -95,8 +95,18 @@ class Product {
         });
         nameElement.appendChild(wishlist);
 
-        const cart = document.createElement('button')
-        cart.className = 'add-cart'
+        const cart = document.createElement('input')
+        cart.type = 'checkbox'
+        cart.classList.add('sales')
+        cart.dataset.productId = this.id;
+        cart.addEventListener('change', () => {
+            if(cart.checked) {
+                addToCart(this.quantity, this.price, this.id)
+            } else {
+                deleteToCart(this.id)
+                location.reload()
+            }
+        })
         infoContainer.appendChild(cart)
 
         productLink.appendChild(infoContainer);
