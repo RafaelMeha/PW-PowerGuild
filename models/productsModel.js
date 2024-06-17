@@ -54,7 +54,7 @@ class Products {
 
     static async delete(productId) {
         try {
-            await pool.query("DELETE FROM sales_products WHERE fk_products_platforms_id IN (SELECT id FROM products_platforms WHERE fk_products_id = ?)", [productId]);
+            await pool.query("DELETE FROM sales_products WHERE fk_products_id IN (SELECT id FROM products_platforms WHERE fk_products_id = ?)", [productId]);
             await pool.query("DELETE FROM products_wishlists WHERE fk_products_id = ?", [productId]);
             await pool.query("DELETE FROM reviews WHERE fk_product_id = ?", [productId]);
             await pool.query("DELETE FROM products_platforms WHERE fk_products_id = ?", [productId]);
