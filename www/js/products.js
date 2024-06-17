@@ -86,6 +86,17 @@ class Product {
         supplierIdElement.style.marginTop = '5px'
         infoContainer.appendChild(supplierIdElement);
 
+        const wishlist = document.createElement('input');
+        wishlist.type = 'checkbox';
+        wishlist.addEventListener('change', () => {
+            if(wishlist.checked) {
+                addToProductsWishlist(this.id)
+            } else  {
+                deleteToProductsWishlist(this.id)
+            }
+        });
+        infoContainer.appendChild(wishlist);
+
         productLink.appendChild(infoContainer);
         productElement.appendChild(productLink);
         return productElement;

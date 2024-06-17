@@ -14,6 +14,12 @@ app.use("/api/products", productsRoutes);
 let platformsRoutes = require("./routes/platformsRoute");
 app.use("/api/platforms", platformsRoutes);
 
+let productsPlatformsRoute = require("./routes/products-platformsRoute");
+app.use("/api/productsplatforms", productsPlatformsRoute);
+
+let ProductsWishlistsRoute = require("./routes/products-wishlistsRoute");
+app.use("/api/productswishlists", ProductsWishlistsRoute);
+
 let reviewRoutes = require("./routes/reviewsRoute");
 app.use("/api/reviews", reviewRoutes);
 

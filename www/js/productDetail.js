@@ -72,3 +72,45 @@ function clearElement(element) {
         element.removeChild(element.firstChild);
     }
 }
+
+async function addToProductsWishlist(productId) {
+    const newProductsWishlists = {
+        fk_products_id: productId,
+        fk_wishlists_id: 1
+    }
+    try {
+        const response = await fetch('/api/productswishlists', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newProductsWishlists)
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const result = await response.json();
+        console.log('New entry added to products_wishlists:', result);
+    } catch (error) {
+        console.error('Error adding new entry to products_wishlists:', error);
+    }
+}
+
+async function deleteToProductsWishlist(productId) {
+    try {
+        const response = await fetch(`/api/productswishlists/${productId}`, {
+            method: 'DELETE'
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        console.log(`Product with fk_products_id ${productId} removed from products_wishlists`);
+
+    } catch (error) {
+        console.error('Error removing product from products_wishlists:', error);
+    }
+}

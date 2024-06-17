@@ -5,6 +5,7 @@ const routes = {
     'terms': '/html/terms.html',
     'privacy': '/html/privacy.html',
     'contact': '/html/contact.html',
+    'wishlist': '/html/wishlist.html',
     'ceo': '/html/cep.html',
 };
 
