@@ -135,7 +135,6 @@ async function searchGame() {
     }
 }
 
-
 async function markWishlistCheckboxes() {
     try {
         const response = await fetch('/api/productswishlists');

@@ -157,3 +157,12 @@ img{
 h2{
     padding: 10px;
 }
+
+.add-cart{
+    width: 2rem;
+    height: 2rem;
+    background-color: transparent;
+    background: url(../assets/icons/cart-empty.png) center/contain no-repeat;
+    border: none;
+    cursor: pointer;
+}

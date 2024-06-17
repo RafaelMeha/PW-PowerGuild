@@ -56,7 +56,6 @@ window.onload = async function() {
                     productData.price,
                     productData.quantity,
                     productData.launch_date,
-                    productData.Type,
                     productData.category,
                     productData.fk_developers_id,
                     productData.fk_suppliers_id
@@ -65,6 +64,7 @@ window.onload = async function() {
                 itemsContainer.appendChild(productElement); 
             }
             await loadReviews();
+            await markWishlistCheckboxes();
         }
     } catch (error) {
         console.error('Error searching product:', error);
@@ -194,5 +194,28 @@ async function deleteToProductsWishlist(productId) {
 
     } catch (error) {
         console.error('Error removing product from products_wishlists:', error);
+    }
+}
+
+async function markWishlistCheckboxes() {
+    try {
+        const response = await fetch('/api/productswishlists');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const productsWishlistsData = await response.json();
+
+        const wishlistProductIds = productsWishlistsData
+            .filter(pw => pw.fk_wishlists_id === 1)
+            .map(pw => pw.fk_products_id);
+
+        document.querySelectorAll('.wishlist-checkbox').forEach(checkbox => {
+            const productId = parseInt(checkbox.dataset.productId, 10);
+            if (wishlistProductIds.includes(productId)) {
+                checkbox.checked = true;
+            }
+        });
+    } catch (error) {
+        console.error('Error fetching wishlist data:', error);
     }
 }

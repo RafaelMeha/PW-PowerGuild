@@ -66,11 +66,6 @@ class Product {
         launchDateElement.style.marginTop = '5px'
         infoContainer.appendChild(launchDateElement);
 
-        const typeElement = document.createElement('div');
-        typeElement.style.marginTop = '5px'
-        typeElement.textContent = `Type: ${this.type}`;
-        infoContainer.appendChild(typeElement);
-
         const categoryElement = document.createElement('div');
         categoryElement.textContent = `Category: ${this.category}`;
         categoryElement.style.marginTop = '5px'
@@ -99,6 +94,10 @@ class Product {
             }
         });
         nameElement.appendChild(wishlist);
+
+        const cart = document.createElement('button')
+        cart.className = 'add-cart'
+        infoContainer.appendChild(cart)
 
         productLink.appendChild(infoContainer);
         productElement.appendChild(productLink);
