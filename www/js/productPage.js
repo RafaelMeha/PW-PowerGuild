@@ -276,7 +276,9 @@ async function markWishlistCheckboxes() {
         }
         const productsWishlistsData = await response.json();
 
-        const wishlistProductIds = productsWishlistsData.map(pw => pw.fk_products_id);
+        const wishlistProductIds = productsWishlistsData
+            .filter(pw => pw.fk_wishlists_id === 1)
+            .map(pw => pw.fk_products_id);
 
         document.querySelectorAll('.wishlist-checkbox').forEach(checkbox => {
             const productId = parseInt(checkbox.dataset.productId, 10);

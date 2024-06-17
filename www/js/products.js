@@ -98,7 +98,7 @@ class Product {
                 location.reload()
             }
         });
-        infoContainer.appendChild(wishlist);
+        nameElement.appendChild(wishlist);
 
         productLink.appendChild(infoContainer);
         productElement.appendChild(productLink);

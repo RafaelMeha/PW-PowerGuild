@@ -12,7 +12,10 @@ window.onload = async function() {
         const productsData = await responseProducts.json();
         const productsWishlistsData = await responseWishlists.json();
 
-        const wishlistProductIds = productsWishlistsData.map(pw => pw.fk_products_id);
+        const wishlistProductIds = productsWishlistsData
+            .filter(pw => pw.fk_wishlists_id === 1)
+            .map(pw => pw.fk_products_id);
+
         const filteredProducts = productsData.filter(product => wishlistProductIds.includes(product.id));
 
         filteredProducts.forEach(productData => {
@@ -87,14 +90,28 @@ async function searchGame() {
     const searchGame = document.getElementById('search-game').value.toLowerCase();
 
     try {
-        const response = await fetch('/api/products');
-        if (!response.ok) {
+        // Fetch all products
+        const responseProducts = await fetch('/api/products');
+        // Fetch wishlist products
+        const responseWishlists = await fetch('/api/productswishlists');
+
+        if (!responseProducts.ok || !responseWishlists.ok) {
             throw new Error('Network response was not ok');
         }
-        const productsData = await response.json();
 
-        const filteredProducts = productsData.filter(product => product.name.toLowerCase().startsWith(searchGame));
+        const productsData = await responseProducts.json();
+        const productsWishlistsData = await responseWishlists.json();
 
+        // Get the list of product IDs in the wishlist
+        const wishlistProductIds = productsWishlistsData.map(pw => pw.fk_products_id);
+
+        // Filter products by search term and wishlist
+        const filteredProducts = productsData.filter(product => 
+            product.name.toLowerCase().startsWith(searchGame) &&
+            wishlistProductIds.includes(product.id)
+        );
+
+        // Generate HTML for each filtered product and append to the container
         filteredProducts.forEach(productData => {
             const product = new Product(
                 productData.id,
@@ -103,20 +120,21 @@ async function searchGame() {
                 productData.discount,
                 productData.price,
                 productData.quantity,
-                productData.launchDate,
+                productData.launch_date,
                 productData.category,
-                productData.fkDevelopersId,
-                productData.fkSuppliersId,
-                productData.image,
-                productData.genre
+                productData.fk_developers_id,
+                productData.fk_suppliers_id
             );
             const productElement = product.generateHtml();
             itemsContainer.appendChild(productElement);
         });
+
+        await markWishlistCheckboxes();
     } catch (error) {
-        console.error('Error fetching products:', error);
+        console.error('Error fetching products or wishlists:', error);
     }
-}   
+}
+
 
 async function markWishlistCheckboxes() {
     try {
@@ -126,7 +144,9 @@ async function markWishlistCheckboxes() {
         }
         const productsWishlistsData = await response.json();
 
-        const wishlistProductIds = productsWishlistsData.map(pw => pw.fk_products_id);
+        const wishlistProductIds = productsWishlistsData
+            .filter(pw => pw.fk_wishlists_id === 1)
+            .map(pw => pw.fk_products_id);
 
         document.querySelectorAll('.wishlist-checkbox').forEach(checkbox => {
             const productId = parseInt(checkbox.dataset.productId, 10);

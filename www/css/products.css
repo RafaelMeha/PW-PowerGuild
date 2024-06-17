@@ -95,10 +95,13 @@ main{
 
 .product-item h2 {
     width: 100%;
+    padding: 0rem 0rem .5rem 1rem;
     overflow: hidden;
     text-wrap: nowrap;
     text-overflow: ellipsis;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: start;
 }
 
 .price-discount{
@@ -111,6 +114,38 @@ main{
 
 .discount{
     color: red;
+}
+
+.product-item input{
+    appearance: none;
+    width: 2rem;
+    height: 2rem;
+    background: url(../assets/icons/wishlistNoteSave.png) center/contain no-repeat;
+    cursor: pointer;
+}
+
+.product-item input:checked{
+    background: url(../assets/icons/wishlistSave.png) center/contain no-repeat;
+}
+
+.product-item input:active{
+    transition: 1s linear;
+    animation: test 1s linear;
+}
+
+@keyframes test {
+    0%,24%{
+        transform: scale(1.1);
+    }
+    25%,49%{
+        transform: scale(1.2);
+    }
+    50%,74%{
+        transform: scale(1.1);
+    }
+    75%,100%{
+        transform: scale(1);
+    }
 }
 
 img{
