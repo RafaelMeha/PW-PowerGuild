@@ -17,6 +17,9 @@ app.use("/api/reviews", reviewRoutes);
 let userRoutes = require("./routes/usersRoute");
 app.use("/api/users", userRoutes);
 
+let distributorRoute = require("./routes/disRoute");
+app.use("/api/distributors", distributorRoute);
+
 app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, 'www', 'admin.html'));
 });
