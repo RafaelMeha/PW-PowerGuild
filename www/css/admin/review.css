@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1f1f1f;
+}
+main {
+    display: flex;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+#back-button {
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #000;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    position: absolute;
+    left: 20px;
+    top: 20px;
+}
+
+#back-button:hover {
+    background-color: #0056b3;
+}
+
+.column {
+    flex: 1;
+    margin: 10px;
+}
+h1, h2 {
+    text-align: center;
+}
+form {
+    margin-bottom: 20px;
+}
+form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+form input[type="text"],
+form input[type="number"],
+form select,
+form input[type="date"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+form button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+.product-item {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.delete-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+ul {
+    list-style: none;
+    padding: 0;
+}
+li {
+    margin-bottom: 10px;
+}
