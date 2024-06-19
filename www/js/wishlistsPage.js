@@ -202,3 +202,110 @@ async function deleteToCart(productId) {
         console.error('Error removing product from sales_products:', error);
     }
 }
+
+async function filter(filterType, filter) {
+    const itemsContainer = document.getElementById('items');
+    itemsContainer.innerHTML = '';
+
+    try {
+        const responseProducts = await fetch('/api/products');
+        const responseWishlists = await fetch('/api/productswishlists');
+        
+        if (!responseProducts.ok || !responseWishlists.ok) {
+            throw new Error('Network response was not ok');
+        }
+        
+        const productsData = await responseProducts.json();
+        const productsWishlistsData = await responseWishlists.json();
+        
+        const wishlistProductIds = productsWishlistsData
+            .filter(pw => pw.fk_wishlists_id === 1)
+            .map(pw => pw.fk_products_id);
+        
+        let filteredProducts = [];
+        
+        switch (filterType) {
+            case 'category':
+                filteredProducts = productsData.filter(product =>
+                    product.category.toLowerCase() === filter.toLowerCase() &&
+                    wishlistProductIds.includes(product.id)
+                );
+                break;
+            default:
+                filteredProducts = productsData.filter(product => 
+                    wishlistProductIds.includes(product.id)
+                );
+                break;
+        }
+        
+        filteredProducts.forEach(productData => {
+            const product = new Product(
+                productData.id,
+                productData.name,
+                productData.description,
+                productData.discount,
+                productData.price,
+                productData.quantity,
+                productData.launch_date,
+                productData.category,
+                productData.fk_developers_id,
+                productData.fk_suppliers_id
+            );
+            const productElement = product.generateHtml();
+            itemsContainer.appendChild(productElement);
+        });
+    } catch (error) {
+        console.error('Error fetching products or wishlists:', error);
+    }
+}
+
+async function filterPlatform(platformId) {
+    const itemsContainer = document.getElementById('items');
+    itemsContainer.innerHTML = '';
+
+    try {
+        const responseProductsPlatforms = await fetch('/api/productsplatforms');
+        const responseProducts = await fetch('/api/products');
+        const responseWishlists = await fetch('/api/productswishlists');
+        
+        if (!responseProductsPlatforms.ok || !responseProducts.ok || !responseWishlists.ok) {
+            throw new Error('Network response was not ok');
+        }
+        
+        const productsPlatformsData = await responseProductsPlatforms.json();
+        const productsData = await responseProducts.json();
+        const productsWishlistsData = await responseWishlists.json();
+        
+        const wishlistProductIds = productsWishlistsData
+            .filter(pw => pw.fk_wishlists_id === 1)
+            .map(pw => pw.fk_products_id);
+        
+        const filteredProductIds = productsPlatformsData
+            .filter(pp => pp.fk_platforms_id === platformId)
+            .map(pp => pp.fk_products_id);
+        
+        const filteredProducts = productsData.filter(product =>
+            filteredProductIds.includes(product.id) &&
+            wishlistProductIds.includes(product.id)
+        );
+        
+        filteredProducts.forEach(productData => {
+            const product = new Product(
+                productData.id,
+                productData.name,
+                productData.description,
+                productData.discount,
+                productData.price,
+                productData.quantity,
+                productData.launch_date,
+                productData.category,
+                productData.fk_developers_id,
+                productData.fk_suppliers_id
+            );
+            const productElement = product.generateHtml();
+            itemsContainer.appendChild(productElement);
+        });
+    } catch (error) {
+        console.error('Error fetching products, productsPlatforms, or wishlists:', error);
+    }
+}
