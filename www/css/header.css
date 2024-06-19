@@ -38,6 +38,10 @@ header input{
     outline: none;
 }
 
+header input[type="search"]::-webkit-search-cancel-button{
+    appearance: none;
+}
+
 header nav{
     display: flex;
     gap: 1.5rem;

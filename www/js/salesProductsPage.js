@@ -1,14 +1,29 @@
 window.onload = async function() {
     const itemsContainer = document.getElementById('items');
+    const testContainer = document.getElementById('test');
 
     try {
-        const response = await fetch('/api/products');
-        if (!response.ok) {
+        const responseProducts = await fetch('/api/products');
+        const responseSalesProducts = await fetch('/api/salesproducts');
+
+        if (!responseProducts.ok || !responseSalesProducts.ok) {
             throw new Error('Network response was not ok');
         }
-        const productsData = await response.json();
 
-        productsData.forEach(productData => {
+        const productsData = await responseProducts.json();
+        const salesProductsData = await responseSalesProducts.json();
+
+        const saleProductIds = salesProductsData.map(sp => sp.fk_products_id);
+
+        const filteredProducts = productsData.filter(product => saleProductIds.includes(product.id));
+
+        if(filteredProducts.length == 1) {
+            testContainer.textContent = `Você tem ${filteredProducts.length} jogo no seu carrinho.`;
+        } else {
+            testContainer.textContent = `Você tem ${filteredProducts.length} jogos no seu carrinho.`;
+        }
+
+        filteredProducts.forEach(productData => {
             const product = new Product(
                 productData.id,
                 productData.name,
@@ -24,84 +39,13 @@ window.onload = async function() {
             const productElement = product.generateHtml();
             itemsContainer.appendChild(productElement);
         });
-
-        await markWishlistCheckboxes();
+        
         await markCartCheckboxes();
+        await markWishlistCheckboxes();
     } catch (error) {
-        console.error('Error fetching products:', error);
+        console.error('Error fetching products or sales products:', error);
     }
-
-    try {
-        const response = await fetch('/api/platforms');
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const platformsData = await response.json();
-
-        platformsData.forEach(platformData => {
-            new Platform(
-                platformData.id,
-                platformData.name
-            );
-        });
-    } catch (error) {
-        console.error('Error fetching platforms:', error);
-    }
-
-    try {
-        const response = await fetch('/api/productsplatforms');
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const productsPlatformsData = await response.json();
-
-        productsPlatformsData.forEach(productPlatformData => {
-            new ProductsPlatforms(
-                productPlatformData.id,
-                productPlatformData.fk_platforms_id,
-                productPlatformData.fk_products_id
-            );
-        });
-    } catch (error) {
-        console.error('Error fetching productsPlatforms:', error);
-    }
-
-    try {
-        const response = await fetch('/api/productswishlists');
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const productsWishlistsData = await response.json();
-
-        productsWishlistsData.forEach(productWishlistData => {
-            new ProductsWishlists(
-                productWishlistData.fk_products_id,
-                productWishlistData.fk_wishlists_id
-            );
-        });
-    } catch (error) {
-        console.error('Error fetching wishlists:', error);
-    }
-
-    try {
-        const response = await fetch('/api/salesproducts');
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const salesProductsData = await response.json();
-
-        salesProductsData.forEach(saleProductData => {
-            new SalesProducts(
-                saleProductData.id,
-                saleProductData.quantity,
-                saleProductData.price,
-                saleProductData.fk_products_id
-            );
-        });
-    } catch (error) {
-        console.error('Error fetching sales_products:', error);
-    }
-};
+}
 
 async function filter(filterType, filter) {
     const itemsContainer = document.getElementById('items');
@@ -225,6 +169,67 @@ async function filterPlatform(platformId) {
     }
 }
 
+async function markCartCheckboxes() {
+    try {
+        const response = await fetch('/api/salesproducts');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const salesProductsData = await response.json();
+
+        const saleProductIds = salesProductsData.map(sp => sp.fk_products_id);
+
+        document.querySelectorAll('.sales').forEach(checkbox => {
+            const productId = parseInt(checkbox.dataset.productId, 10);
+            if (saleProductIds.includes(productId)) {
+                checkbox.checked = true;
+            }
+        });
+    } catch (error) {
+        console.error('Error fetching sales products data:', error);
+    }
+}
+
+async function deleteToCart(productId) {
+    try {
+        const response = await fetch(`/api/salesproducts/${productId}`, {
+            method: 'DELETE'
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        console.log(`Product with fk_products_id ${productId} removed from sales_products`);
+
+    } catch (error) {
+        console.error('Error removing product from sales_products:', error);
+    }
+}
+
+async function markWishlistCheckboxes() {
+    try {
+        const response = await fetch('/api/productswishlists');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const productsWishlistsData = await response.json();
+
+        const wishlistProductIds = productsWishlistsData
+            .filter(pw => pw.fk_wishlists_id === 1)
+            .map(pw => pw.fk_products_id);
+
+        document.querySelectorAll('.wishlist-checkbox').forEach(checkbox => {
+            const productId = parseInt(checkbox.dataset.productId, 10);
+            if (wishlistProductIds.includes(productId)) {
+                checkbox.checked = true;
+            }
+        });
+    } catch (error) {
+        console.error('Error fetching wishlist data:', error);
+    }
+}
+
 async function addToProductsWishlist(productId) {
     const newProductsWishlists = {
         fk_products_id: productId,
@@ -264,92 +269,5 @@ async function deleteToProductsWishlist(productId) {
 
     } catch (error) {
         console.error('Error removing product from products_wishlists:', error);
-    }
-}
-
-async function markWishlistCheckboxes() {
-    try {
-        const response = await fetch('/api/productswishlists');
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const productsWishlistsData = await response.json();
-
-        const wishlistProductIds = productsWishlistsData
-            .filter(pw => pw.fk_wishlists_id === 1)
-            .map(pw => pw.fk_products_id);
-
-        document.querySelectorAll('.wishlist-checkbox').forEach(checkbox => {
-            const productId = parseInt(checkbox.dataset.productId, 10);
-            if (wishlistProductIds.includes(productId)) {
-                checkbox.checked = true;
-            }
-        });
-    } catch (error) {
-        console.error('Error fetching wishlist data:', error);
-    }
-}
-
-async function markCartCheckboxes() {
-    try {
-        const response = await fetch('/api/salesproducts');
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const salesProductsData = await response.json();
-
-        const saleProductIds = salesProductsData.map(sp => sp.fk_products_id);
-
-        document.querySelectorAll('.sales').forEach(checkbox => {
-            const productId = parseInt(checkbox.dataset.productId, 10);
-            if (saleProductIds.includes(productId)) {
-                checkbox.checked = true;
-            }
-        });
-    } catch (error) {
-        console.error('Error fetching sales products data:', error);
-    }
-}
-
-async function addToCart(quantity, price, fk_products_id) {
-    const newSalesProduct = {
-        quantity: quantity,
-        price: price,
-        fk_products_id: fk_products_id
-    }
-    try {
-        const response = await fetch('/api/salesproducts', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(newSalesProduct)
-        });
-
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-
-        const result = await response.json();
-        console.log('New entry added to sales_products:', result);
-    } catch (error) {
-        console.error('Error adding new entry to sales_products:', error);
-    }
-}
-
-async function deleteToCart(productId) {
-    try {
-        const response = await fetch(`/api/salesproducts/${productId}`, {
-            method: 'DELETE'
-        });
-
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-
-        console.log(`Product with fk_products_id ${productId} removed from sales_products`);
-
-    } catch (error) {
-        console.error('Error removing product from sales_products:', error);
     }
 }

@@ -1,5 +1,5 @@
 class Product {
-    constructor(id, name, description, discount, price, quantity, launch_date, type, category, fk_developers_id, fk_suppliers_id) {
+    constructor(id, name, description, discount, price, quantity, launch_date, category, fk_developers_id, fk_suppliers_id) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -7,7 +7,6 @@ class Product {
         this.price = price;
         this.quantity = quantity;
         this.launch_date = launch_date;
-        this.type = type;
         this.category = category;
         this.fk_developers_id = fk_developers_id;
         this.fk_suppliers_id = fk_suppliers_id;
@@ -18,6 +17,7 @@ class Product {
         productElement.classList.add('product-item');
 
         const productLink = document.createElement('a');
+        productLink.className = 'game-link';
         productLink.href = `http://localhost:3000/html/productDetail.html?id=${this.id}`;
         productLink.style.textDecoration = 'none';
         productLink.style.color = 'inherit';
@@ -66,11 +66,6 @@ class Product {
         launchDateElement.style.marginTop = '5px'
         infoContainer.appendChild(launchDateElement);
 
-        const typeElement = document.createElement('div');
-        typeElement.style.marginTop = '5px'
-        typeElement.textContent = `Type: ${this.type}`;
-        infoContainer.appendChild(typeElement);
-
         const categoryElement = document.createElement('div');
         categoryElement.textContent = `Category: ${this.category}`;
         categoryElement.style.marginTop = '5px'
@@ -85,6 +80,34 @@ class Product {
         supplierIdElement.textContent = `Supplier ID: ${this.fk_suppliers_id}`;
         supplierIdElement.style.marginTop = '5px'
         infoContainer.appendChild(supplierIdElement);
+
+        const wishlist = document.createElement('input');
+        wishlist.type = 'checkbox';
+        wishlist.classList.add('wishlist-checkbox');
+        wishlist.dataset.productId = this.id;
+        wishlist.addEventListener('change', () => {
+            if(wishlist.checked) {
+                addToProductsWishlist(this.id)
+            } else  {
+                deleteToProductsWishlist(this.id)
+                location.reload()
+            }
+        });
+        nameElement.appendChild(wishlist);
+
+        const cart = document.createElement('input')
+        cart.type = 'checkbox'
+        cart.classList.add('sales')
+        cart.dataset.productId = this.id;
+        cart.addEventListener('change', () => {
+            if(cart.checked) {
+                addToCart(this.quantity, this.price, this.id)
+            } else {
+                deleteToCart(this.id)
+                location.reload()
+            }
+        })
+        infoContainer.appendChild(cart)
 
         productLink.appendChild(infoContainer);
         productElement.appendChild(productLink);

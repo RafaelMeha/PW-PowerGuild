@@ -11,10 +11,69 @@ body{
 main{
     padding: 4.5rem 12rem 2rem 12rem;
     color: var(--white);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 #filters{
+    width: 100%;
+    padding: 1rem 0rem;
+    border: 1px solid var(--nav-text);
     list-style: none;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.filters-type{
+    position: relative;
+}
+
+.filters-type h3{
+    cursor: default;
+}
+
+.filters-type ul{
+    position: absolute;
+    width: 100%;
+    white-space: nowrap;
+    list-style: none;
+    display: none;
+    flex-direction: column;
+}
+
+.filters-type ul li button, .filters-type ul li a{
+    width: 100%;
+    padding: .4rem .4rem .4rem 0rem;
+    color: var(--nav-text);
+    text-decoration: none;
+    background-color: var(--primary);
+    border: none;
+    cursor: pointer;
+    display: flex; 
+}
+
+.filters-type ul li button:hover, .filters-type ul li a:hover{
+    background-color: #353535;
+}
+
+.filters-type h3:hover + ul{
+    display: flex;
+}
+
+.filters-type ul:hover{
+    display: flex;
+}
+
+#wishlist{
+    color: #fff;
+    text-decoration: none;
+}
+
+#wishlist:hover{
+    color: var(--secondary);
 }
 
 #items{
@@ -24,9 +83,25 @@ main{
     grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
 }
 
-.product-item {
+.product-item a{
     padding: 1rem;
     border: 1px solid #ccc;
+    color: var(--white);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-item h2 {
+    width: 100%;
+    padding: 0rem 0rem .5rem 1rem;
+    overflow: hidden;
+    text-wrap: nowrap;
+    text-overflow: ellipsis;
+    display: flex;
+    align-items: center;
+    justify-content: start;
 }
 
 .price-discount{
@@ -41,6 +116,38 @@ main{
     color: red;
 }
 
+.wishlist-checkbox{
+    appearance: none;
+    width: 2rem;
+    height: 2rem;
+    background: url(../assets/icons/wishlistNoteSave.png) center/contain no-repeat;
+    cursor: pointer;
+}
+
+.wishlist-checkbox:checked{
+    background: url(../assets/icons/wishlistSave.png) center/contain no-repeat;
+}
+
+.wishlist-checkbox:active{
+    transition: 1s linear;
+    animation: test 1s linear;
+}
+
+@keyframes test {
+    0%,24%{
+        transform: scale(1.1);
+    }
+    25%,49%{
+        transform: scale(1.2);
+    }
+    50%,74%{
+        transform: scale(1.1);
+    }
+    75%,100%{
+        transform: scale(1);
+    }
+}
+
 img{
     width: 194px;
     height: 200px;
@@ -49,4 +156,20 @@ img{
 
 h2{
     padding: 10px;
+}
+
+.sales{
+    appearance: none;
+    width: 2rem;
+    height: 2rem;
+    background: url(../assets/icons/cart-empty.png) center/contain no-repeat;
+    cursor: pointer;
+}
+
+.sales:checked{
+    background: url(../assets/icons/cart.png) center/contain no-repeat;
+}
+
+.sales:active{
+    transform: scale(1.1);
 }
