@@ -14,6 +14,31 @@
     <header id="header"></header>
 
     <main>
+        <ul id="filters">
+            <div class="filters-type">
+                <h3>Category</h3>
+                <ul>
+                    <li><a href="wishlist.html">All</a></li>
+                    <li><button onclick="filter('category', 'adventure')">Adventure</button></li>
+                    <li><button onclick="filter('category', 'action')">Action</button></li>
+                    <li><button onclick="filter('category', 'shooter')">Shooter</button></li>
+                    <li><button onclick="filter('category', 'fighting')">Fighting</button></li>
+                    <li><button onclick="filter('category', 'rpg')">RPG</button></li>
+                </ul>
+            </div>
+
+            <div class="filters-type">
+                <h3>Platform</h3>
+                <ul>
+                    <li><a href="wishlist.html">All</a></li>
+                    <li><button onclick="filterPlatform(1)">Pc</button></li>
+                    <li><button onclick="filterPlatform(2)">Playsation</button></li>
+                    <li><button onclick="filterPlatform(3)">xBox</button></li>
+                    <li><button onclick="filterPlatform(4)">Nintendo</button></li>
+                </ul>
+            </div>
+        </ul>
+
         <h1 id="test"></h1>
         <ul id="items"></ul>
     </main>

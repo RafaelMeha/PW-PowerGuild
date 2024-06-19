@@ -65,6 +65,7 @@ window.onload = async function() {
             }
             await loadReviews();
             await markWishlistCheckboxes();
+            await markCartCheckboxes();
         }
     } catch (error) {
         console.error('Error searching product:', error);
@@ -217,5 +218,69 @@ async function markWishlistCheckboxes() {
         });
     } catch (error) {
         console.error('Error fetching wishlist data:', error);
+    }
+}
+
+async function markCartCheckboxes() {
+    try {
+        const response = await fetch('/api/salesproducts');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const salesProductsData = await response.json();
+
+        const saleProductIds = salesProductsData.map(sp => sp.fk_products_id);
+
+        document.querySelectorAll('.sales').forEach(checkbox => {
+            const productId = parseInt(checkbox.dataset.productId, 10);
+            if (saleProductIds.includes(productId)) {
+                checkbox.checked = true;
+            }
+        });
+    } catch (error) {
+        console.error('Error fetching sales products data:', error);
+    }
+}
+
+async function addToCart(quantity, price, fk_products_id) {
+    const newSalesProduct = {
+        quantity: quantity,
+        price: price,
+        fk_products_id: fk_products_id
+    }
+    try {
+        const response = await fetch('/api/salesproducts', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newSalesProduct)
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const result = await response.json();
+        console.log('New entry added to sales_products:', result);
+    } catch (error) {
+        console.error('Error adding new entry to sales_products:', error);
+    }
+}
+
+async function deleteToCart(productId) {
+    try {
+        const response = await fetch(`/api/salesproducts/${productId}`, {
+            method: 'DELETE'
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        console.log(`Product with fk_products_id ${productId} removed from sales_products`);
+
+    } catch (error) {
+        console.error('Error removing product from sales_products:', error);
     }
 }
