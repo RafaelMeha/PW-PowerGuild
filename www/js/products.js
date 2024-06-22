@@ -47,12 +47,12 @@ class Product {
         infoContainer.appendChild(descriptionElement);
 
         const discountElement = document.createElement('div');
-        discountElement.textContent = `Discount: ${this.discount}`;
+        discountElement.textContent = `Discount: ${this.discount}%`;
         discountElement.style.marginTop = '5px'
         infoContainer.appendChild(discountElement);
 
         const priceElement = document.createElement('div');
-        priceElement.textContent = `Price: ${this.price}`;
+        priceElement.textContent = `Price: ${this.price}€`;
         priceElement.style.marginTop = '5px'
         infoContainer.appendChild(priceElement);
 

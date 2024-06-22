@@ -20,9 +20,9 @@ window.onload = async function() {
         const filteredProducts = productsData.filter(product => wishlistProductIds.includes(product.id));
 
         if(filteredProducts.length == 1) {
-            testContainer.textContent = `Você tem ${filteredProducts.length} jogo na sua wishlist.`;
+            testContainer.textContent = `You have ${filteredProducts.length} game in your wishlist.`;
         } else {
-            testContainer.textContent = `Você tem ${filteredProducts.length} jogos na sua wishlist.`;
+            testContainer.textContent = `You have ${filteredProducts.length} games in your wishlist.`;
         }
 
         filteredProducts.forEach(productData => {
