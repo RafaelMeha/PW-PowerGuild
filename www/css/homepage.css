@@ -1,14 +1,60 @@
-#title, #subtitle{
+html, body {
+    overflow: hidden;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+header{
+    background: none;
+}
+
+#title, #subtitle {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 10px;
+    margin-top: 50px;
 }
 
-#allgames-title{
+#allgames-title {
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 40px;
     font-size: 40px;
+}
+
+main {
+    background-image: url(../assets/games/homepageImg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    color: white;
+}
+
+section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#buy-button {
+    padding: 20px; 
+    background-color: var(--secondary);
+    color: var(--primary);
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+#buy-button a{
+    text-decoration: none;
+    color: #FFF;
+}
+
+#buy-button:hover {
+    background-color: #e0a600;
 }

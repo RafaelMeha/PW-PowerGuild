@@ -42,6 +42,16 @@ class Platforms {
             throw error;
         }
     }
+
+    static async delete(platformId) {
+        try {
+            const [result] = await pool.query("DELETE FROM platforms WHERE id = ?", [platformId]);
+            return result;
+        } catch (error) {
+            console.error("Error deleting distributor:", error);
+            throw error;
+        }
+    } 
 }
 
 module.exports = Platforms;
