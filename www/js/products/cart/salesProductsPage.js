@@ -18,9 +18,9 @@ window.onload = async function() {
         const filteredProducts = productsData.filter(product => saleProductIds.includes(product.id));
 
         if(filteredProducts.length == 1) {
-            testContainer.textContent = `Você tem ${filteredProducts.length} jogo no seu carrinho.`;
+            testContainer.textContent = `You have ${filteredProducts.length} game in your cart.`;
         } else {
-            testContainer.textContent = `Você tem ${filteredProducts.length} jogos no seu carrinho.`;
+            testContainer.textContent = `You have ${filteredProducts.length} games in your cart.`;
         }
 
         filteredProducts.forEach(productData => {

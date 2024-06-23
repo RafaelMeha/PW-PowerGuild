@@ -9,7 +9,7 @@ header{
     left: 0;
     width: calc(100% - 24rem);
     padding: 1rem 12rem;
-    background-color: var(--primary);
+    background-color: var(--primary); 
     border-bottom: 1px solid var(--nav-text);
     box-shadow: 0px 0px 5px var(--nav-text);
     color: var(--nav-text);

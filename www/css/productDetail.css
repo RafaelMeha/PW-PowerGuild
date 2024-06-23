@@ -1,5 +1,5 @@
-:root {
-    --primary: #1f1f1f;
+:root{
+    --primary: #0c0c0c;
     --secondary: #f8bb21;
 }
 
@@ -59,7 +59,7 @@ h2 {
 
 #items li,
 #reviews li {
-    background-color: #333;
+    background-color: #1a1a1a;
     margin: 10px 0;
     padding: 20px;
     border-radius: 4px;
@@ -77,7 +77,7 @@ h2 {
     height: 5em;
     border-radius: 4px;
     border: 1px solid #444;
-    background-color: #333;
+    background-color: #1a1a1a;
     color: #fff;
     margin-right: 10px;
     resize: none;

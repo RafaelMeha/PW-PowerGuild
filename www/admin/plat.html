@@ -3,34 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Product Page</title>
+    <title>Admin User Page</title>
     <link rel="shortcut icon" href="../assets/icons/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../css/admin/review.css">
+    <link rel="stylesheet" href="../css/admin/dis.css">
 </head>
 <body>
     <button id="back-button">Back</button>
     <main>
         <div class="column">
             <section>
-                <h1>Search for Review</h1>
+                <h1>Search for Distributor</h1>
                 <form id="searchForm">
-                    <label for="searchId">Search Review by ID:</label>
+                    <label for="searchId">Search Distributor by ID:</label>
                     <input type="text" id="searchId" name="searchId">
                     <button type="submit">Search</button>
                 </form>
-                <form id="addProductForm" class="add-form">
-                    <h2>Add Review</h2>
-                    <label>Ratings: <input type="text" id="ratings"></label><br>
-                    <label>Review Text: <input type="text" id="description"></label><br>
-                    <label>Product ID: <input type="number" id="product_id"></label><br>
-                    <button type="submit">Add Review</button>
+                <form id="addUserForm" class="add-form">
+                    <h2>Add Distributor</h2>
+                    <label>Name: <input type="text" id="name"></label><br>
+                    <button type="submit">Add Platform</button>
                 </form>
             </section>
         </div>
         <div class="column">
             <section>
-                <h2>Reviews</h2>
-                <ul id="reviews">
+                <h2>Distributors</h2>
+                <ul id="distributors">
                 </ul>
             </section>
         </div>
@@ -40,7 +38,7 @@
             window.history.back();
         });
     </script>
-    <script src="../js/admin/adminReviews.js"></script>
-    <script src="../js/review/review.js"></script>
+    <script src="../../js/admin/adminPlat.js"></script>
+    <script src="../../js/platform.js"></script>
 </body>
 </html>

@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const User = require("../models/usersModel");
+const Developer = require("../models/devModel");
 
 router.get('/', async function(req, res) {
     try {
-        let result = await User.getAll();
+        let result = await Developer.getAll();
         res.send(result);
     } catch (error) {
         console.log(error);
@@ -14,8 +14,8 @@ router.get('/', async function(req, res) {
 
 router.post('/', async function(req, res) {
     try {
-        let newUser = req.body;
-        let result = await User.add(newUser);
+        let developerId = req.body;
+        let result = await Developer.add(developerId);
         res.status(201).send(result);
     } catch (error) {
         console.log(error);
@@ -25,8 +25,8 @@ router.post('/', async function(req, res) {
 
 router.get('/:id', async function(req, res) {
     try {
-        let userId = req.params.id;
-        let result = await User.getById(userId);
+        let DeveloperId = req.params.id;
+        let result = await Developer.getById(DeveloperId);
         if (!result) {
             res.status(404).send("Review not found");
         } else {
@@ -40,8 +40,8 @@ router.get('/:id', async function(req, res) {
 
 router.delete('/:id', async function(req, res) { 
     try {
-        let userId = req.params.id;
-        let result = await User.delete(userId);
+        let DeveloperId = req.params.id;
+        let result = await Developer.delete(DeveloperId);
         res.status(204).send();
     } catch (error) {
         console.log(error);
