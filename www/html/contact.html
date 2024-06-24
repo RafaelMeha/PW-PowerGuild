@@ -17,21 +17,16 @@
 <body>
     <header id="header"></header>
     <main>
-        <section>
-            <h1>C<span class="span">o</span>ntact us</h1>
-            
-            <form action="https://formspree.io/f/xoqogagr" method="POST" id="myForm">
-                <input type="text" name="nome" id="first_name" placeholder="FIRST NAME*" oninput="validarLetras(this)" required>
-                <input type="text" name="sobrenome" id="last_name" placeholder="LAST NAME*" oninput="validarLetras(this)" required>
+            <form method="POST">
+                <input type="text" name="nome" id="first_name" placeholder="FIRST NAME*" required>
+                <input type="text" name="sobrenome" id="last_name" placeholder="LAST NAME*" required>
     
                 <input type="email" name="email" id="email" placeholder="EMAIL*" required>
-                <input list="countries" name="country" placeholder="Country">
-                <datalist id="countries"></datalist>
     
                 <input type="text" name="subject" id="subject" placeholder="SUBJECT*" autocomplete="off" required>
                 <textarea name="mensagem" id="message" placeholder="MESSAGE*" autocomplete="off" required></textarea>
     
-                <button type="submit" id="send">
+                <button type="button" onclick="sendForm()" id="send">
                     <div class="svg-wrapper-1">
                         <div class="svg-wrapper">
                           <svg
@@ -51,39 +46,11 @@
                       <span>Send</span>
                 </button>
             </form>
-        </section>
-        <!-- Footer -->
-        <!-- <footer>
-            <div class="footer-con">
-                <div class="row">
-                    <div class="footer-col">
-                        <h4 class="footer-title">Menu</h4>
-                        <ul class="footer-menu">
-                            <li><a href="../../index.html">home</a></li>
-                            <li><a href="sub.html">subscription</a></li>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="terms.html">terms of use</a></li>
-                            <li><a href="#">Privacy</a></li>
-                            <li><a href="contact.html">contact Us</a></li>
-                            <li><a href="#">CEOS</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <h4 class="footer-title">Follow Us</h4>
-                        <div class="social-links">
-                            <a href="https://www.facebook.com/"><i class="fab fa-facebook-f"></i></a>
-                            <a href="https://twitter.com/"><i class="fab fa-twitter"></i></a>
-                            <a href="https://www.instagram.com/"><i class="fab fa-instagram"></i></a>
-                            <a href="https://www.linkedin.com/"><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                        <p class="copyright">Copyright &copy; 2023 Tvbe, All rights Reserved</p>
-                    </div>
-                </div>
-            </div>
-        </footer>   -->
     </main>
     
     <script src="../js/header/header.js"></script>
     <script src="../js/header/routes.js"></script>
+    <script src="../js/contact/contactPage.js"></script>
+    <script src="../js/contact/contact.js"></script>
 </body>
 </html>

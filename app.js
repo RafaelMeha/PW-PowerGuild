@@ -35,6 +35,10 @@ app.use("/api/distributors", distributorRoute);
 let developerRoute = require("./routes/devRoute");
 app.use("/api/developers", developerRoute)
 
+let contactRoute = require("./routes/contactRoute");
+app.use("/api/contact", contactRoute)
+
+
 app.get('/admin', (req, res) => {
     res.sendFile(path.join(__dirname, 'www', 'admin.html'));
 });
