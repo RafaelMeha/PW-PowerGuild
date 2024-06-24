@@ -113,6 +113,16 @@ CREATE TABLE IF NOT EXISTS products_wishlists (
     PRIMARY KEY (fk_products_id, fk_wishlists_id)
 );
 
+CREATE TABLE contact (
+	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
+    email VARCHAR(150),
+    subject VARCHAR(100),
+    message VARCHAR(245),
+    fk_user_id INT,
+    FOREIGN KEY (fk_user_id) REFERENCES users(id)
+);
 
 ALTER TABLE customers 
     ADD CONSTRAINT fk_customers_users FOREIGN KEY (fk_user_id) REFERENCES users(id);
