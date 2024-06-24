@@ -50,7 +50,8 @@ CREATE TABLE IF NOT EXISTS products (
     discount INT,
     price FLOAT NOT NULL,
     quantity INT,
-    launch_date VARCHAR(10),
+    launch_date TIMESTAMP,
+    Type ENUM('Physical', 'Non-Physical'),
     category VARCHAR(255),
     fk_developers_id INT NOT NULL,
     fk_suppliers_id INT NOT NULL
