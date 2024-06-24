@@ -1,11 +1,9 @@
-section{
+main{
+    min-height: calc(100lvh - 6rem);
+    padding: 5rem 1rem 1rem 1rem;
     display: flex;
-    gap: 5rem;
-    flex-direction: column;
-}
-
-.span{
-    color: #f8bb21;
+    align-items: center;
+    justify-content: center;
 }
 
 form{
@@ -30,6 +28,10 @@ form input {
     background-color: var(--primary);
     border: 2px solid var(--secondary);
     border-radius: 10px;
+}
+
+form #email, #subject{
+    grid-column: span 4;
 }
 
 form input:nth-child(6){
