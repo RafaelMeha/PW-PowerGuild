@@ -1,4 +1,6 @@
 window.onload = async function() {
+    const form = document.getElementById('form');
+
     try {
         const response = await fetch('/api/contact');
         if (!response.ok) {
@@ -53,8 +55,12 @@ async function sendForm() {
     
             const result = await response.json();
             console.log('Success:', result);
+            form.reset()
+            alert("Email was send successfully! :D")
         } catch (error) {
             console.error('Error submitting form:', error);
+            alert("There was an error sending the email! :c")
+
         }
     }
 }
