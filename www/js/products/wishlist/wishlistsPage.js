@@ -38,7 +38,7 @@ window.onload = async function() {
                 productData.fk_developers_id,
                 productData.fk_suppliers_id
             );
-            const productElement = product.generateHtml();
+            const productElement = product.generateProductHtml();
             itemsContainer.appendChild(productElement);
         });
 
@@ -105,7 +105,7 @@ async function searchGame() {
                 productData.fk_developers_id,
                 productData.fk_suppliers_id
             );
-            const productElement = product.generateHtml();
+            const productElement = product.generateProductHtml();
             itemsContainer.appendChild(productElement);
         });
 
@@ -251,7 +251,7 @@ async function filter(filterType, filter) {
                 productData.fk_developers_id,
                 productData.fk_suppliers_id
             );
-            const productElement = product.generateHtml();
+            const productElement = product.generateProductHtml();
             itemsContainer.appendChild(productElement);
         });
     } catch (error) {
@@ -302,7 +302,7 @@ async function filterPlatform(platformId) {
                 productData.fk_developers_id,
                 productData.fk_suppliers_id
             );
-            const productElement = product.generateHtml();
+            const productElement = product.generateProductHtml();
             itemsContainer.appendChild(productElement);
         });
     } catch (error) {

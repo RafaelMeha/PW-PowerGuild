@@ -113,4 +113,81 @@ class Product {
         productElement.appendChild(productLink);
         return productElement;
     }
+
+    generateProductHtml() {
+        const productElement = document.createElement('div');
+        productElement.classList.add('product-item');
+
+        const productLink = document.createElement('a');
+        productLink.className = 'game-link';
+        productLink.href = `http://localhost:3000/html/productDetail.html?id=${this.id}`;
+        productLink.style.textDecoration = 'none';
+        productLink.style.color = 'inherit';
+        productLink.style.display = 'flex';
+        productLink.style.alignItems = 'center';
+        productLink.style.justifyContent = 'center';
+        productLink.style.flexWrap = 'wrap';
+
+        const nameElement = document.createElement('h2');       
+        nameElement.textContent = this.name;
+        nameElement.style.textAlign = 'center';
+        nameElement.style.width = '100%';
+        productLink.appendChild(nameElement);
+
+        const imgElement = document.createElement('img');
+        imgElement.src = `../assets/games/game.jpg`; 
+        imgElement.alt = this.name;
+        imgElement.classList.add('product-image');
+        imgElement.style.marginRight = '20px';
+        productLink.appendChild(imgElement);
+
+        const infoContainer = document.createElement('div');
+
+        const discountElement = document.createElement('div');
+        discountElement.textContent = `Discount: ${this.discount}%`;
+        discountElement.style.marginTop = '5px'
+        infoContainer.appendChild(discountElement);
+
+        const priceElement = document.createElement('div');
+        priceElement.textContent = `Price: ${this.price}€`;
+        priceElement.style.marginTop = '5px'
+        infoContainer.appendChild(priceElement);
+
+        const categoryElement = document.createElement('div');
+        categoryElement.textContent = `Category: ${this.category}`;
+        categoryElement.style.marginTop = '5px'
+        infoContainer.appendChild(categoryElement);
+
+        const wishlist = document.createElement('input');
+        wishlist.type = 'checkbox';
+        wishlist.classList.add('wishlist-checkbox');
+        wishlist.dataset.productId = this.id;
+        wishlist.addEventListener('change', () => {
+            if(wishlist.checked) {
+                addToProductsWishlist(this.id)
+            } else  {
+                deleteToProductsWishlist(this.id)
+                location.reload()
+            }
+        });
+        nameElement.appendChild(wishlist);
+
+        const cart = document.createElement('input')
+        cart.type = 'checkbox'
+        cart.classList.add('sales')
+        cart.dataset.productId = this.id;
+        cart.addEventListener('change', () => {
+            if(cart.checked) {
+                addToCart(this.quantity, this.price, this.id)
+            } else {
+                deleteToCart(this.id)
+                location.reload()
+            }
+        })
+        infoContainer.appendChild(cart)
+
+        productLink.appendChild(infoContainer);
+        productElement.appendChild(productLink);
+        return productElement;
+    }
 }
